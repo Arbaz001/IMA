@@ -5,6 +5,7 @@ const Course = require('../model/Course')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const cloudinary = require('cloudinary').v2
+const Student = require('../model/Student')
 
 cloudinary.config({
    cloud_name: process.env.CLOUD_NAME,
@@ -78,11 +79,13 @@ router.get('/all-courses',checkAuth,(req, res)=>{
 router.get('/course-detail/:id',checkAuth,(req, res)=>{
    
       Course.findById(req.params.id)
-     
       .select('_id uId courseName description price startingDate endDate imageUrl imageId')
       .then(result => {
-         res.status(200).json({
-            message:"Course fetched successfully",course:result
+         Student.find({courseId:req.params.id})
+         .then(students=>{
+            res.status(200).json({
+               message:"Course fetched successfully and with students",course:result, studentList:students
+            })
          })
       })
       .catch(err => {
@@ -198,6 +201,24 @@ router.get('/course-detail/:id',checkAuth,(req, res)=>{
          })
       })
    })
+
+    //get latest 5 courses data from server
+    router.get('/latest-courses',(req, res)=>{
+       Course.find()
+          .sort({startingDate:-1})
+          .limit(5)
+          .select('_id courseName price startingDate imageUrl')
+          .then(courses=>{
+             res.status(200).json({
+                message:"Latest courses fetched successfully",courses:courses
+             })
+          })
+          .catch(err=>{
+             res.status(500).json({
+                message:err.message
+             })
+          })
+    })
    
 
 
