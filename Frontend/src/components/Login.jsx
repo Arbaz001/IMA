@@ -1,8 +1,39 @@
 // components/Login.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    try {
+      const res = await axios.post('http://localhost:4200/user/login', {
+        email,
+        password
+      });
+      setLoading(false);
+      toast.success('Logged In Successfully');
+      navigate('/dashboard');
+      console.log(res);
+    } catch (err) {
+      setLoading(false);
+      toast.error('Invalid Email or Password');
+      console.log(err);
+    }
+  };
+
   return (
     <main className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Section */}
@@ -22,12 +53,14 @@ function Login() {
       <div className="w-full lg:w-1/2 p-8 flex items-center justify-center">
         <div className="max-w-md w-full">
           <h2 className="text-2xl font-bold mb-8 text-center">Login With Your Account</h2>
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm font-medium">
                 Email
               </label>
               <input
+                required
+                onChange={handleEmailChange}
                 id="email"
                 type="email"
                 placeholder="Enter your email"
@@ -39,21 +72,25 @@ function Login() {
                 Password
               </label>
               <input
+                required
+                onChange={handlePasswordChange}
                 id="password"
                 type="password"
                 placeholder="Enter password"
                 className="w-full px-3 py-2 border rounded-md"
               />
             </div>
-            <button 
+            <button
               type="submit"
-              className="w-full bg-[#FF4E62] hover:bg-[#ff3a51] text-white py-2 px-4 rounded-md transition-colors"
+              className={`w-full font-extrabold flex items-center justify-center gap-2 bg-[#FF4E62] hover:bg-[#ff3a51] active:bg-[#e6344a] focus:ring-4 focus:ring-[#ff9aa3] text-white py-2 px-4 rounded-lg shadow-md transition-all duration-300 ${isLoading ? 'cursor-not-allowed opacity-75' : ''}`}
+              disabled={isLoading}
             >
-              Submit
+              {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse mr-2"></i>}
+              {isLoading ? 'Logging...' : 'Login'}
             </button>
           </form>
           <p className="mt-4 text-center text-sm">
-            Don't have an account?{" "}
+            Don't have an account?{' '}
             <Link to="/" className="text-[#6C63FF] hover:underline">
               Create Your Account
             </Link>

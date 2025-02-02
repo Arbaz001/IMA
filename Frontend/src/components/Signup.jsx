@@ -1,50 +1,50 @@
 // components/Signup.jsx
 import axios from 'axios';
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 function Signup() {
-    const [fullName,setFullName] =  useState('')
-    const [email,setEmail] =  useState('')
-    const [phone,setPhone] =  useState('')
-    const [password,setPassword] =  useState('')
-    const [image,setImage] =  useState(null)
-    const [imageUrl,setImageUrl] = useState('')
-    const [isLoading,setLoading] = useState(false)
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [password, setPassword] = useState('')
+  const [image, setImage] = useState(null)
+  const [imageUrl, setImageUrl] = useState('')
+  const [isLoading, setLoading] = useState(false)
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        setLoading(true)
-        const formData = new FormData()
-        formData.append('fullName', fullName)
-        formData.append('email', email)
-        formData.append('phone', phone)
-        formData.append('password', password)
-        formData.append('image', image)
-        
-        axios.post('http://localhost:4200/user/signup',formData)
-        .then(res=>{
-            setLoading(false)
-            toast.success('Your Account Is Created')
-            navigate('/login')
-            console.log(res)
-        })
-        .catch(err=>{
-            setLoading(false)
-            toast.error('Failed to signup')
-            console.log(err)
-        })
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    const formData = new FormData()
+    formData.append('fullName', fullName)
+    formData.append('email', email)
+    formData.append('phone', phone)
+    formData.append('password', password)
+    formData.append('image', image)
 
-    const filehandler = (e) => {
-        setImage(e.target.files[0])
-        setImageUrl(URL.createObjectURL(e.target.files[0]))
-    }
+    axios.post('http://localhost:4200/user/signup', formData)
+      .then(res => {
+        setLoading(false)
+        toast.success('Your Account Is Created')
+        navigate('/login')
+        console.log(res)
+      })
+      .catch(err => {
+        setLoading(false)
+        toast.error('Failed to signup')
+        console.log(err)
+      })
+  }
+
+  const filehandler = (e) => {
+    setImage(e.target.files[0])
+    setImageUrl(URL.createObjectURL(e.target.files[0]))
+  }
 
   return (
     <main className="min-h-screen flex flex-col lg:flex-row">
@@ -70,9 +70,9 @@ function Signup() {
               <label htmlFor="institute" className="block text-sm font-medium">
                 Institute Full Name
               </label>
-              <input 
+              <input
                 required
-                onChange={e=>{setFullName(e.target.value)}}
+                onChange={e => { setFullName(e.target.value) }}
                 type='text'
                 id="institute"
                 placeholder="Enter institute name"
@@ -83,9 +83,9 @@ function Signup() {
               <label htmlFor="email" className="block text-sm font-medium">
                 Email
               </label>
-              <input 
+              <input
                 required
-                onChange={e=>{setEmail(e.target.value)}}
+                onChange={e => { setEmail(e.target.value) }}
                 id="email"
                 type="email"
                 placeholder="Enter your email"
@@ -96,9 +96,9 @@ function Signup() {
               <label htmlFor="phone" className="block text-sm font-medium">
                 Phone
               </label>
-              <input 
+              <input
                 required
-                onChange={e=>{setPhone(e.target.value)}}
+                onChange={e => { setPhone(e.target.value) }}
                 id="phone"
                 type="tel"
                 placeholder="Enter phone number"
@@ -109,9 +109,9 @@ function Signup() {
               <label htmlFor="password" className="block text-sm font-medium">
                 Password
               </label>
-              <input 
+              <input
                 required
-                onChange={e=>{setPassword(e.target.value)}}
+                onChange={e => { setPassword(e.target.value) }}
                 id="password"
                 type="password"
                 placeholder="Create password"
@@ -122,26 +122,25 @@ function Signup() {
               <label htmlFor="file" className="block text-sm font-medium">
                 Upload File
               </label>
-              <input 
+              <input
                 required
                 onChange={filehandler}
                 id="file"
                 type="file"
                 className="w-full cursor-pointer"
               />
-              {imageUrl && <img className='h-40' alt='your logo' src={imageUrl}/>}
+              {imageUrl && <img className='h-40' alt='your logo' src={imageUrl} />}
             </div>
-            
-            <button 
-  type="submit"
-  className={`w-full flex items-center justify-center gap-2 bg-[#FF4E62] hover:bg-[#ff3a51] active:bg-[#e6344a] focus:ring-4 focus:ring-[#ff9aa3] text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ${
-    isLoading ? 'cursor-not-allowed opacity-75' : ''
-  }`}
-  disabled={isLoading}
->
-  {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
-  {isLoading ? 'Submitting...' : 'Submit'}
-</button>
+
+            <button
+              type="submit"
+              className={`w-full font-extrabold flex items-center justify-center gap-2 bg-[#FF4E62] hover:bg-[#ff3a51] active:bg-[#e6344a] focus:ring-4 focus:ring-[#ff9aa3] text-white py-2 px-4 rounded-lg shadow-md transition-all duration-300 ${isLoading ? 'cursor-not-allowed opacity-75' : ''
+                }`}
+              disabled={isLoading}
+            >
+              {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse mr-2"></i>}
+              {isLoading ? 'Submitting...' : 'Submit'}
+            </button>
 
           </form>
           <p className="mt-4 text-center text-sm">
