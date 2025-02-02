@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
+const cors = require('cors')
 
 //routes url path
 const userRoute = require('./routes/user')
@@ -19,6 +20,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/Student-Management')
 })
 
 app.use(bodyParser.json())
+app.use(cors())
 
 app.use(fileUpload({
     useTempFiles: true,

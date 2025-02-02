@@ -17,6 +17,13 @@ cloudinary.config({
 router.post('/signup', (req, res) => {
 
     //0 check if email already exists
+    User.findOne({ email: req.body.email})
+    .then(users => {
+        if (users) {
+            return res.status(400).json({
+                message: 'Email already exists'
+            })
+        }
     
     //1 step->upload image 
     cloudinary.uploader.upload(req.files.image.tempFilePath, (err, result) => {
@@ -30,9 +37,9 @@ router.post('/signup', (req, res) => {
             // 3 step->upload text file 
             const newUser = new User({
                 _id: new mongoose.Types.ObjectId,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                fullName: req.body.fullName,
                 email: req.body.email,
+                phone: req.body.phone,
                 password: hash,
                 imageUrl: result.secure_url,
                 imageId: result.public_id
@@ -40,8 +47,7 @@ router.post('/signup', (req, res) => {
             newUser.save()
                 .then(result => {
                     res.status(200).json({
-                        message: "User created successfully",
-                        user: result
+                        newUser: result
                     })
                 }).catch(err => {
                     console.log(err)
@@ -53,6 +59,7 @@ router.post('/signup', (req, res) => {
         })
 
     })
+  })
 })
 
 // login Api
@@ -77,9 +84,9 @@ router.post('/login', (req, res) => {
             
              //generate token
             const token = jwt.sign({
+                fullName:users[0].fullName,
                 email:users[0].email,
-                firstName:users[0].firstName,
-                lastName:users[0].lastName,
+                phone:users[0].phone,
                 uId:users[0]._id
             },
             process.env.SECRET_KEY,
@@ -91,9 +98,9 @@ router.post('/login', (req, res) => {
         //send token to user
         res.status(200).json({
             _id:users[0]._id,
-            firstName:users[0].firstName,
-            lastName:users[0].lastName,
+            fullName:users[0].fullName,
             email:users[0].email,
+            phone:users[0].phone,
             imageUrl: users[0].imageUrl,
             imageId: users[0].imageId,
             token:token
