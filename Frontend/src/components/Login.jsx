@@ -24,6 +24,12 @@ function Login() {
         password
       });
       setLoading(false);
+      localStorage.setItem('token',res.data.token);
+      localStorage.setItem('fullname',res.data.fullName);
+      localStorage.setItem('imageurl',res.data.imageUrl);
+      localStorage.setItem('imageId',res.data.imageId);
+      localStorage.setItem('email',res.data.email);
+      localStorage.setItem('token',res.data.token);
       toast.success('Logged In Successfully');
       navigate('/dashboard');
       console.log(res);

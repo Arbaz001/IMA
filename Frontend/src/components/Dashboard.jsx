@@ -1,9 +1,21 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import {Search, Bell, Settings, ChevronDown} from "lucide-react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate()
+  const logoutHandler = () => {
+    // Clear local storage
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('imageId');
+    localStorage.removeItem('imageurl');
+    localStorage.removeItem('fullname');
+    sessionStorage.clear(); 
+    // Logout logic here
+    navigate('/login',{replace:true})
+  }
   const [activeItem, setActiveItem] = useState("Home");
 
   return (
@@ -29,20 +41,20 @@ const Dashboard = () => {
             </button>
             <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-lg">
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%20(17)-cwrabvxnNe1p64IPUZw4uthyvkXXXd.png"
+                src={localStorage.getItem('imageurl')}
                 alt="Logo"
                 className="h-8 w-8 rounded-full border-2 border-purple-500"
               />
               <div className="text-xl">
-                <p className="font-bold">KCCITM</p>
+                <p className="font-bold">{localStorage.getItem('fullname')}</p>
               </div>
             </div>
-            <button className="px-4 py-1.5 bg-red-500 text-white text-sm rounded-lg hover:bg-red-600 transition-colors font-medium shadow-lg shadow-red-500/30">
+            <button onClick={logoutHandler} className="px-4 py-1.5 bg-red-500 text-white text-sm rounded-lg hover:bg-red-600 transition-colors font-medium shadow-lg shadow-red-500/30">
               Logout
             </button>
           </div>
         </nav>
-        <main className="p-6">
+        <main className="px-2">
           <Outlet />
         </main>
       </div>
