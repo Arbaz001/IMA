@@ -12,6 +12,7 @@ import Courses from './components/Courses';
 import Home from './components/Home';
 import CollectFee from './components/CollectFee';
 import PaymentHistory from './components/PaymentHistory';
+import CourseDetail from './components/CourseDetail';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="add-students" element={<AddStudent />} />
           <Route path="collect-fee" element={<CollectFee />} />
           <Route path="payment-history" element={<PaymentHistory />} />
+          <Route path="course-detail/:id" element={<CourseDetail/>} />
         </Route>
       </Routes>
       <ToastContainer autoClose={1000} />

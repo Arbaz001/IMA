@@ -54,7 +54,7 @@ const Dashboard = () => {
             </button>
           </div>
         </nav>
-        <main className="px-2">
+        <main>
           <Outlet />
         </main>
       </div>
