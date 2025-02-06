@@ -94,47 +94,6 @@ const CourseDetail = () => {
     <div className="flex-1 bg-gray-100 w-full min-h-screen p-0">
       {course ? (
         <div className="bg-white p-4">
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex-1">
-              <h1 className="text-3xl font-bold mb-1 text-blue-700">
-                {isEditing ? (
-                  <input
-                    type="text"
-                    name="courseName"
-                    value={editedCourse.courseName}
-                    onChange={handleInputChange}
-                    className="border p-2 rounded w-full"
-                  />
-                ) : (
-                  course.courseName
-                )}
-              </h1>
-            </div>
-            <div className="space-x-2">
-              {isEditing ? (
-                <button
-                  onClick={handleUpdate}
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                >
-                  Save
-                </button>
-              ) : (
-                <button
-                  onClick={handleEditToggle}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
-                >
-                  Edit Course
-                </button>
-              )}
-              <button
-                onClick={handleDelete}
-                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-              >
-                Delete Course
-              </button>
-            </div>
-          </div>
-
           <div className="flex gap-6">
             <div className="relative">
               <img
@@ -150,8 +109,21 @@ const CourseDetail = () => {
                 />
               )}
             </div>
-            <div>
-              <p className="text-gray-700 mb-1 text-lg">
+            <div className='ml-7 mb-2'>
+            <h1 className="text-5xl font-bold mb-3 text-blue-700">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    name="courseName"
+                    value={editedCourse.courseName}
+                    onChange={handleInputChange}
+                    className="border p-2 rounded w-full"
+                  />
+                ) : (
+                  course.courseName
+                )}
+              </h1>
+              <p className="text-gray-700 mb-2 text-lg">
                 Price: ₹{isEditing ? (
                   <input
                     type="number"
@@ -164,7 +136,7 @@ const CourseDetail = () => {
                   course.price
                 )}
               </p>
-              <p className="text-gray-700 mb-1">
+              <p className="text-gray-700 mb-2">
                 Starting Date: {isEditing ? (
                   <input
                     type="date"
@@ -177,7 +149,7 @@ const CourseDetail = () => {
                   course.startingDate
                 )}
               </p>
-              <p className="text-gray-700 mb-1">
+              <p className="text-gray-700 mb-2">
                 End Date: {isEditing ? (
                   <input
                     type="date"
@@ -203,6 +175,31 @@ const CourseDetail = () => {
                 )}
               </p>
             </div>
+            <div className='ml-40'>
+            <div className="space-x-2">
+              {isEditing ? (
+                <button
+                  onClick={handleUpdate}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                >
+                  Save
+                </button>
+              ) : (
+                <button
+                  onClick={handleEditToggle}
+                  className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
+                >
+                  Edit Course
+                </button>
+              )}
+              <button
+                onClick={handleDelete}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+              >
+                Delete Course
+              </button>
+            </div>
+            </div>
           </div>
 
           <h2 className="text-2xl font-semibold text-gray-800 mt-10 mb-4">Enrolled Students</h2>
@@ -223,8 +220,8 @@ const CourseDetail = () => {
                 </tr>
               </thead>
               <tbody>
-                {studentList.map((student, index) => (
-                  <tr key={index} className="hover:bg-gray-100">
+                {studentList.map((student) => (
+                  <tr onClick={()=>{navigate('/dashboard/student-detail/'+student._id)}}  key={student._id} className="hover:bg-gray-100">
                     <td className="p-3">
                       <img
                         src={student.imageUrl}
