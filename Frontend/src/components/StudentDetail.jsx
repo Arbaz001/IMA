@@ -10,6 +10,7 @@ const StudentDetail = () => {
     const [isEditing, setIsEditing] = useState(false)
     const [editedStudent, setEditedStudent] = useState({})
     const [imageFile, setImageFile] = useState(null)
+    const [course, setCourse] = useState({})
 
     const params = useParams()
     useEffect(() => {
@@ -28,6 +29,7 @@ const StudentDetail = () => {
                 setStudent(response.data.studentDetail)
                 setPaymentList(response.data.feeDetail)
                 setEditedStudent(response.data.studentDetail)
+                setCourse(response.data.courseDetail)
             })
             .catch((err) => {
                 toast.error('Failed to fetch student details')
@@ -92,7 +94,7 @@ const StudentDetail = () => {
                             <img
                                 src={imageFile ? URL.createObjectURL(imageFile) : student.imageUrl}
                                 alt={student.fullName}
-                                className="w-56 h-56 object-cover rounded-full shadow-sm"
+                                className="w-56 h-56 object-cover rounded-full shadow-xl shadow-slate-600"
                             />
                             {isEditing && (
                                 <input
@@ -103,20 +105,20 @@ const StudentDetail = () => {
                             )}
                         </div>
                         <div className='ml-5 mt-7'>
-                        <h1 className="text-3xl font-bold mb-1 text-blue-700">
+                        <h1 className="text-3xl font-extrabold mb-1 text-blue-700">
                                {isEditing ? (
                                     <input
                                         type="text"
                                         name="name"
                                         value={editedStudent.fullName}
                                         onChange={handleInputChange}
-                                        className="border p-1 rounded"
+                                        className="border pl-3 text-balance font-extrabold rounded"
                                     />
                                 ) : (
                                     student.fullName
                                 )}
                             </h1>
-                            <p className="text-gray-700 mb-1 ">
+                            <p className="font-bold text-gray-700 mb-1 ">
                                 Phone: {isEditing ? (
                                     <input
                                         type="telephone"
@@ -129,7 +131,7 @@ const StudentDetail = () => {
                                     student.phone
                                 )}
                             </p>
-                            <p className="text-gray-700 mb-1">
+                            <p className="font-bold text-gray-700 mb-1">
                                 Address: {isEditing ? (
                                     <input
                                         type="text"
@@ -142,7 +144,7 @@ const StudentDetail = () => {
                                     student.address
                                 )}
                             </p>
-                            <p className="text-gray-700 mb-1">
+                            <p className="font-bold text-gray-700 mb-1">
                                 Email: {isEditing ? (
                                     <input
                                         type="email"
@@ -155,27 +157,31 @@ const StudentDetail = () => {
                                     student.email
                                 )}
                             </p>
+                            <p onClick={()=>{Navigate('/dashboard/course-detail/'+course._id)}}  className="font-extrabold text-gray-700 mb-1">
+                                Course: {course.courseName}
+                            </p>
+
                         </div>
                         <div className='ml-40 mt-12'>
                         <div className="space-x-2">
                             {isEditing ? (
                                 <button
                                     onClick={handleUpdate}
-                                    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                                    className="bg-green-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-green-600"
                                 >
                                     Save
                                 </button>
                             ) : (
                                 <button
                                     onClick={handleEditToggle}
-                                    className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
+                                    className="bg-yellow-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
                                 >
                                     Edit Student
                                 </button>
                             )}
                             <button
                                 onClick={handleDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                                className="bg-red-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-red-600"
                             >
                                 Delete Student
                             </button>
@@ -184,7 +190,7 @@ const StudentDetail = () => {
                     </div>
 
                     
-                    <h2 className="text-2xl font-semibold text-gray-800 mt-10 mb-4">Student Fees</h2>
+                    <h2 className="text-2xl text-center font-extrabold text-gray-800 mt-5 mb-4">Payment History</h2>
 
                     {paymentList.length === 0 ? (
                         <div className="text-center mt-10">

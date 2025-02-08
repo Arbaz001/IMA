@@ -71,7 +71,7 @@ const AddCourses = () => {
           <input
             required
             onChange={e => { setPrice(e.target.value) }}
-            type="number"
+            type="price"
             placeholder="Price"
             className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
           />

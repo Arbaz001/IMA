@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const cloudinary = require('cloudinary').v2
 const Fee = require('../model/Fee')
+const Course = require('../model/Course')
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -61,15 +62,19 @@ router.post('/add-student',checkAuth,(req, res)=>{
       .then(result => {
          Fee.find({uId:verify.uId, courseId:result.courseId, phone:result.phone})
          .then(feeData => {
-            res.status(200).json({
-               studentDetail:result,
-               feeDetail:feeData
+            Course.findById(result.courseId)
+            .then(courseDetail=>{
+               res.status(200).json({
+                  studentDetail:result,
+                  feeDetail:feeData,
+                  courseDetail:courseDetail
+               })
             })
-         })
-         .catch(err => {
-            console.log(err)
-            res.status(500).json({
-               error:err
+            .catch(err => {
+               console.log(err)
+               res.status(500).json({
+                  error:err
+               })  
             })
          })
       })

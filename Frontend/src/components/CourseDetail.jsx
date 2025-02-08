@@ -99,7 +99,7 @@ const CourseDetail = () => {
               <img
                 src={imageFile ? URL.createObjectURL(imageFile) : course.imageUrl}
                 alt={course.courseName}
-                className="w-96 h-56 object-cover rounded-xl shadow-sm"
+                className="w-96 h-56 object-cover rounded-xl  border-2 border-black shadow-black shadow-lg"
               />
               {isEditing && (
                 <input
@@ -110,7 +110,7 @@ const CourseDetail = () => {
               )}
             </div>
             <div className='ml-7 mb-2'>
-            <h1 className="text-5xl font-bold mb-3 text-blue-700">
+            <h1 className="text-3xl font-bold mb-3 text-blue-700">
                 {isEditing ? (
                   <input
                     type="text"
@@ -123,7 +123,7 @@ const CourseDetail = () => {
                   course.courseName
                 )}
               </h1>
-              <p className="text-gray-700 mb-2 text-lg">
+              <p className="text-gray-700 font-bold mb-2 text-lg">
                 Price: ₹{isEditing ? (
                   <input
                     type="number"
@@ -136,7 +136,7 @@ const CourseDetail = () => {
                   course.price
                 )}
               </p>
-              <p className="text-gray-700 mb-2">
+              <p className="text-gray-700 font-bold mb-2 text-lg">
                 Starting Date: {isEditing ? (
                   <input
                     type="date"
@@ -149,7 +149,7 @@ const CourseDetail = () => {
                   course.startingDate
                 )}
               </p>
-              <p className="text-gray-700 mb-2">
+              <p className="text-gray-700 font-bold mb-2 text-lg">
                 End Date: {isEditing ? (
                   <input
                     type="date"
@@ -162,7 +162,7 @@ const CourseDetail = () => {
                   course.endDate
                 )}
               </p>
-              <p className="text-gray-600 mt-4 leading-relaxed">
+              <p className="text-gray-600 font-bold mt-4 leading-relaxed text-lg">
                 {isEditing ? (
                   <textarea
                     name="description"
@@ -180,21 +180,21 @@ const CourseDetail = () => {
               {isEditing ? (
                 <button
                   onClick={handleUpdate}
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                  className="bg-green-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-green-600"
                 >
                   Save
                 </button>
               ) : (
                 <button
                   onClick={handleEditToggle}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
+                  className="bg-yellow-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
                 >
                   Edit Course
                 </button>
               )}
               <button
                 onClick={handleDelete}
-                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                className="bg-red-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-red-600"
               >
                 Delete Course
               </button>
@@ -202,12 +202,12 @@ const CourseDetail = () => {
             </div>
           </div>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mt-10 mb-4">Enrolled Students</h2>
+          <h2 className="text-2xl font-extrabold  text-gray-800 mt-8 mb-4">Enrolled Students..</h2>
 
           {studentList.length === 0 ? (
             <div className="text-center mt-10">
-              <p className="text-xl text-gray-500">🎓 No Students Enrolled Yet!</p>
-              <p className="text-md text-gray-400 mt-2">Students will appear here once enrolled.</p>
+              <p className="text-xl font-extrabold text-gray-500">🎓 No Students Enrolled Yet!</p>
+              <p className="text-md font-bold text-gray-400 mt-2">Students will appear here once enrolled.</p>
             </div>
           ) : (
             <table className="w-full text-left border-collapse mt-4">
@@ -229,9 +229,9 @@ const CourseDetail = () => {
                         className="w-12 h-12 rounded-full object-cover border"
                       />
                     </td>
-                    <td className="p-3 font-medium text-gray-800">{student.fullName}</td>
-                    <td className="p-3 text-gray-700">{student.phone}</td>
-                    <td className="p-3 text-gray-700">{student.email}</td>
+                    <td className="p-3 font-extrabold text-gray-800">{student.fullName}</td>
+                    <td className="p-3 font-extrabold text-gray-700">{student.phone}</td>
+                    <td className="p-3 font-extrabold text-gray-700">{student.email}</td>
                   </tr>
                 ))}
               </tbody>
