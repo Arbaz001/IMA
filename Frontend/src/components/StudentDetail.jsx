@@ -202,17 +202,17 @@ const StudentDetail = () => {
                         <table className="w-full text-left border-collapse mt-4">
                             <thead>
                                 <tr className="bg-gray-200">
-                                    <th className="border-b p-3 text-red-600">Amount</th>
                                     <th className="border-b p-3 text-red-600">Date</th>
+                                    <th className="border-b p-3 text-red-600">Amount</th>
                                     <th className="border-b p-3 text-red-600">Remark</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {paymentList.map((fee) => (
-                                    <tr key={fee._id} className="hover:bg-gray-100">
-                                        <td className="p-3 font-medium text-gray-800">{fee.amount}</td>
-                                        <td className="p-3 text-gray-700">{fee.date}</td>
-                                        <td className="p-3 text-gray-700">{fee.remark}</td>
+                                {paymentList.map((payment) => (
+                                    <tr key={payment._id} className="hover:bg-gray-100">
+                                        <td className="p-3 text-gray-700">{payment.createdAt}</td>
+                                        <td className="p-3 font-medium text-gray-800">{payment.amount}</td>
+                                        <td className="p-3 text-gray-700">{payment.remark}</td>
                                     </tr>
                                 ))}
                             </tbody>
