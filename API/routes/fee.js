@@ -29,23 +29,35 @@ router.post('/add-fee',checkAuth,(req, res)=>{
   })
 })
 
-//get all fee collection data for any user
-router.get('/payment-history',checkAuth,(req,res) => {
-    const token = req.headers.authorization.split(' ')[1]
-    const verify = jwt.verify(token,process.env.SECRET_KEY)
+router.get('/payment-history', checkAuth, (req, res) => {
+    const token = req.headers.authorization?.split(' ')[1]; // Token extract kar raha hai
+    console.log("Received Token:", token); // Debugging ke liye console pe print kar
 
-    Fee.find({uId:verify.uId})
-    .then(result=>{
-        res.status(200).json({
-            paymentHistory:result
-        })
-    })
-    .catch(err=>{
-        res.status(500).json({
-            error:err
-        })
-    })
-})
+    if (!token) {
+        return res.status(401).json({ error: "No token provided" });
+    }
+
+    try {
+        const verify = jwt.verify(token, process.env.SECRET_KEY); // Token verify kar raha hai
+        console.log("Decoded User ID:", verify.uId); // Debugging ke liye user ID print kar
+
+        Fee.find({ uId: verify.uId })
+            .select('_id fullName phone amount remark uId createdAt')
+            .then(result => {
+                console.log("Fetched Payment History:", result); // Debugging ke liye data print kar
+                res.status(200).json({ paymentHistory: result });
+            })
+            .catch(err => {
+                console.error("Database Query Error:", err);
+                res.status(500).json({ error: err.message });
+            });
+
+    } catch (err) {
+        console.error("Token Verification Error:", err);
+        res.status(401).json({ error: "Invalid token" });
+    }
+});
+
 
 //get all payments for any students in a course
 router.get('/all-payments',checkAuth,(req,res) => {

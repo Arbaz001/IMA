@@ -210,7 +210,7 @@ const StudentDetail = () => {
                             <tbody>
                                 {paymentList.map((payment) => (
                                     <tr key={payment._id} className="hover:bg-gray-100">
-                                        <td className="p-3 text-gray-700">{payment.createdAt}</td>
+                                        <td className="p-3 text-gray-700">{new Date(payment.createdAt).toLocaleDateString()} {/* ✅ Date Formatting */}</td>
                                         <td className="p-3 font-medium text-gray-800">{payment.amount}</td>
                                         <td className="p-3 text-gray-700">{payment.remark}</td>
                                     </tr>
