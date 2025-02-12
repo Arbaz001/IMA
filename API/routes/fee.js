@@ -20,16 +20,13 @@ router.post('/add-fee',checkAuth,(req, res)=>{
         remark:req.body.remark,
     })
     newFee.save()
-    .then(result=>{
-        res.status(200).json({
-            newFee:result
-        })
-    })
-    .catch(err =>{
-        res.status(500).json({
-            error:err
-        })
-    })
+  .then(result => {
+      res.status(200).json({ newFee: result });
+  })
+  .catch(err => {
+      console.error("Error saving fee:", err);  // Yeh error terminal pe print karega
+      res.status(500).json({ error: err.message }); 
+  })
 })
 
 //get all fee collection data for any user
