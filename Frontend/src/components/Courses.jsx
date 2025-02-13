@@ -30,8 +30,8 @@ const Courses = () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2">
       {courses.length > 0 ? (
         courses.map(course => (
-          <div onClick={()=>{navigate('/dashboard/course-detail/'+course._id)}} key={course.id} className="bg-gray-300 rounded-2xl  py-1 px-2 border-2 border-black  hover:shadow-xl hover:shadow-black duration-200">
-            <img src={course.imageUrl} alt={course.title} className="w-full h-40  rounded-lg mb-2" />
+          <div onClick={()=>{navigate('/dashboard/course-detail/'+course._id)}} key={course.id} className="bg-white rounded-2xl  py-1 px-2 border-2 shadow-xl shadow-black cursor-pointer">
+            <img src={course.imageUrl} alt={course.title} className="w-full h-40  border-2 border-black  rounded-lg mb-2" />
             <p className="text-base font-bold text-center text-green-600 mb-1">Price: ₹{course.price}</p>
             <p className="text-neutral-800 text-center text-xl mb-2 font-extrabold">{course.courseName}</p>
           </div>

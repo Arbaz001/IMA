@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Lottie from "lottie-react";
+import Logo from "../assets/Logo";
 
 
 function Signup() {
@@ -51,20 +53,16 @@ function Signup() {
       {/* Left Section */}
       <div className="w-full lg:w-1/2 bg-[#6C63FF] p-8 flex flex-col items-center justify-center text-white">
         <div className="max-w-md text-center">
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%20(12)-G8oZrs6RQuKkcWeYtaFXpznoQqJr86.png"
-            alt="Books Illustration"
-            className="mx-auto mb-8 w-[200px] h-[200px]"
-          />
-          <h1 className="text-3xl font-bold mb-2">Institute Management App</h1>
-          <p className="text-yellow-300">Manage Your All data in Easy Way...</p>
+        <Lottie animationData={Logo} loop={true}/>
+          <h1 className="text-3xl font-extrabold mb-2">Institute Management App</h1>
+          <p className="text-yellow-300 font-bold">Manage Your All data in Easy Way...</p>
         </div>
       </div>
 
       {/* Right Section */}
       <div className="w-full lg:w-1/2 p-8 flex items-center justify-center">
         <div className="max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-8 text-center">Create Your Account</h2>
+          <h2 className="text-2xl font-extrabold mb-8 text-center">Create Your Account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="institute" className="block text-sm font-medium">

@@ -221,7 +221,7 @@ const CourseDetail = () => {
               </thead>
               <tbody>
                 {studentList.map((student) => (
-                  <tr onClick={()=>{navigate('/dashboard/student-detail/'+student._id)}}  key={student._id} className="hover:bg-gray-100">
+                  <tr onClick={()=>{navigate('/dashboard/student-detail/'+student._id)}}  key={student._id} className="hover:bg-gray-100 cursor-pointer">
                     <td className="p-3">
                       <img
                         src={student.imageUrl}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
@@ -29,12 +30,12 @@ const Dashboard = () => {
   if (loading) return <div className="flex items-center justify-center min-h-screen text-xl font-semibold">Loading...</div>;
 
   return (
-    <div className="p-10 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50 min-h-screen">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-        <StatCard title="Courses" value={data.TotalCourses} color="bg-purple-500 text-white" />
-        <StatCard title="Students" value={data.TotalStudents} color="bg-red-500 text-white" />
-        <StatCard title="Total Amount" value={`Rs ${data.TotalAmount}`} color="bg-green-500 text-white" />
+        <GraphCard title="Courses" data={data.TotalCourses} color="bg-purple-500 text-white" />
+        <GraphCard title="Students" data={data.TotalStudents} color="bg-red-500 text-white" />
+        <GraphCard title="Total Amount" data={data.TotalAmount} color="bg-green-500 text-white" />
       </div>
 
       {/* Students & Transactions Tables */}
@@ -50,11 +51,11 @@ const Dashboard = () => {
           ))}
         </Table>
 
-        <Table title="Recent Transactions" headers={["Name", "Date & Time", "Amount", "Remark"]}>
+        <Table title="Recent Transactions" headers={["Name","Date & Time", "Amount", "Remark"]}>
           {data.Payments.map((payment, index) => (
-            <tr key={index} className="border-b hover:bg-gray-100 transition-all">
+            <tr key={index} className="border-b hover:bg-gray-100 transition-all gap-1">
               <td>{payment.fullName}</td>
-              <td>{new Date(payment.date).toLocaleString()}</td>
+              <td>{new Date(payment.createdAt).toLocaleDateString()} {/* ✅ Date Formatting */}</td>
               <td>{payment.amount}</td>
               <td>{payment.remark}</td>
             </tr>
@@ -65,21 +66,37 @@ const Dashboard = () => {
   );
 };
 
-const StatCard = ({ title, value, color }) => (
-  <div className={`${color} p-6 rounded-lg shadow-md text-center`}> 
-    <h2 className="text-3xl font-bold">{value}</h2>
-    <p className="text-white font-medium mt-2">{title}</p>
-  </div>
-);
+const GraphCard = ({ title, data, color }) => {
+  const chartData = Array.from({ length: 10 }, (_, i) => ({
+    name: `Day ${i + 1}`,
+    value: Math.floor(data * (0.5 + Math.random() * 0.5)),
+  }));
+
+  return (
+    <div className={`${color} p-8 rounded-lg shadow-md text-center`}> 
+      <h2 className="text-3xl font-bold">{data}</h2>
+      <p className="text-white font-bold mt-2">{title}</p>
+      <ResponsiveContainer width="100%" height={150}>
+        <LineChart data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Line type="monotone" dataKey="value" stroke="#fff" strokeWidth={2} />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
 
 const Table = ({ title, headers, children }) => (
-  <div className="bg-white p-6 rounded-lg shadow overflow-auto">
-    <h3 className="text-lg font-bold mb-4 text-gray-700 border-b pb-2">{title}</h3>
+  <div className="bg-white p-11 rounded-lg shadow overflow-auto">
+    <h3 className="text-lg font-bold mb-4 text-red-800 border-b pb-2">{title}</h3>
     <table className="w-full text-left">
       <thead>
         <tr className="border-b bg-gray-200">
           {headers.map((header, index) => (
-            <th key={index} className="py-3 px-4 font-semibold text-gray-700">{header}</th>
+            <th key={index} className="py-3 px-4 font-semibold text-red-600">{header}</th>
           ))}
         </tr>
       </thead>
