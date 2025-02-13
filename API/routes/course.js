@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const cloudinary = require('cloudinary').v2
 const Student = require('../model/Student')
+const Fee = require('../model/Fee')
 
 cloudinary.config({
    cloud_name: process.env.CLOUD_NAME,
@@ -219,7 +220,36 @@ router.get('/course-detail/:id',checkAuth,(req, res)=>{
              })
           })
     })
-   
+
+    // home api
+    router.get('/home',checkAuth,async(req, res)=>{
+      try{
+         const token = req.headers.authorization.split(' ')[1]
+         const verify = jwt.verify(token,process.env.SECRET_KEY)
+         const newPayments = await Fee.find({uId:verify.uId}).sort({$natural:-1}).limit(5)
+         const newStudents = await Student.find({uId:verify.uId}).sort({$natural:-1}).limit(5)
+         const totalCourses = await Course.countDocuments({uId:verify.uId})
+         const totalStudents = await Student.countDocuments({uId:verify.uId})
+         const totalAmount = await Fee.aggregate([
+            { $match: { uId: verify.uId } },
+            { $group: { _id: null, totalAmount: { $sum: "$amount" } } }
+         ])
+         res.status(200).json({
+            message:"Home page fetched successfully",
+            Payments:newPayments,
+            Students:newStudents,
+            TotalCourses:totalCourses,
+            TotalStudents:totalStudents,
+            TotalAmount: totalAmount[0].totalAmount || 0
+         })
+      }
+      catch(err)
+      {
+         res.status(500).json({
+            error:err
+         })
+      }
+    })
 
 
 module.exports = router
