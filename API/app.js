@@ -10,8 +10,10 @@ const userRoute = require('./routes/user')
 const courseRoute = require('./routes/course')
 const feeRoute = require('./routes/fee')
 const studentRoute = require('./routes/student')
+require("dotenv").config()
+const db_password=process.env.db_password
 
-mongoose.connect('mongodb://127.0.0.1:27017/Student-Management')
+mongoose.connect(`mongodb+srv://AliArbaz:${db_password}@ima.y304n.mongodb.net/?retryWrites=true&w=majority&appName=IMA`)
 .then(()=>{
     console.log("Connected to MongoDB")
 })
