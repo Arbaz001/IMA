@@ -38,7 +38,6 @@ const AddStudent = () => {
     })
       .then(res => {
         setIsLoading(false)
-        console.log(res.data)
         toast.success('Student Added Successfully')
         navigate('/dashboard/all-students')
       })

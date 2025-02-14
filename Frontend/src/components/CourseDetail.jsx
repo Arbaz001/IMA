@@ -29,6 +29,7 @@ const CourseDetail = () => {
         setStudentList(response.data.studentList)
       })
       .catch((err) => {
+        console.log(err)
         toast.error('Failed to fetch course details')
       })
   }

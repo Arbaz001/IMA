@@ -35,7 +35,6 @@ const AddFee = () => {
     })
       .then(res => {
         setIsLoading(false)
-        console.log(res.data)
         toast.success('Student submit fee Successfully')
         navigate('/dashboard/payment-history')
       })

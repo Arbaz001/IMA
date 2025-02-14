@@ -104,7 +104,6 @@ router.get('/course-detail/:id',checkAuth,(req, res)=>{
 
       Course.findByIdAndDelete(req.params.id)
       .then(course => {
-         console.log(course)
          if(course.uId == verify.uId) 
          {
            Course.findByIdAndDelete(req.params.id)  //delete course from the database

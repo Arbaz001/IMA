@@ -23,9 +23,6 @@ const PaymentHistory = () => {
       const response = await axios.get("http://localhost:4200/fee/payment-history", {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      console.log("API Response:", response.data);
-
       if (response.data.paymentHistory) {
         setPaymentList(response.data.paymentHistory);
       } else {

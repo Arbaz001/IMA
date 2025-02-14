@@ -34,7 +34,6 @@ function Signup() {
         setLoading(false)
         toast.success('Your Account Is Created')
         navigate('/login')
-        console.log(res)
       })
       .catch(err => {
         setLoading(false)

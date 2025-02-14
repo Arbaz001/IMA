@@ -31,7 +31,6 @@ router.post('/add-fee',checkAuth,(req, res)=>{
 
 router.get('/payment-history', checkAuth, (req, res) => {
     const token = req.headers.authorization?.split(' ')[1]; // Token extract kar raha hai
-    console.log("Received Token:", token); // Debugging ke liye console pe print kar
 
     if (!token) {
         return res.status(401).json({ error: "No token provided" });
@@ -39,12 +38,9 @@ router.get('/payment-history', checkAuth, (req, res) => {
 
     try {
         const verify = jwt.verify(token, process.env.SECRET_KEY); // Token verify kar raha hai
-        console.log("Decoded User ID:", verify.uId); // Debugging ke liye user ID print kar
-
         Fee.find({ uId: verify.uId })
             .select('_id fullName phone amount remark uId createdAt')
             .then(result => {
-                console.log("Fetched Payment History:", result); // Debugging ke liye data print kar
                 res.status(200).json({ paymentHistory: result });
             })
             .catch(err => {

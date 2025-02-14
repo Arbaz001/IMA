@@ -34,7 +34,6 @@ function Login() {
       localStorage.setItem('token',res.data.token);
       toast.success('Logged In Successfully');
       navigate('/dashboard');
-      console.log(res);
     } catch (err) {
       setLoading(false);
       toast.error('Invalid Email or Password');

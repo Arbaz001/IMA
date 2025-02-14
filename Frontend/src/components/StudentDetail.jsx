@@ -26,7 +26,6 @@ const StudentDetail = () => {
                 },
             })
             .then((response) => {
-                console.log(response.data)
                 setStudent(response.data.studentDetail || {})
                 setEditedStudent(response.data.studentDetail || {})
                 setPaymentList(response.data.feeDetail || [])

@@ -134,7 +134,6 @@ router.post('/add-student',checkAuth,(req, res)=>{
  
        Student.findByIdAndDelete(req.params.id)
        .then(student => {
-          console.log(student)
           if(student.uId == verify.uId) 
           {
             Student.findByIdAndDelete(req.params.id)  //delete student from the database

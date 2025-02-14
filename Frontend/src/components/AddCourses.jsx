@@ -34,7 +34,6 @@ const AddCourses = () => {
     })
       .then(res => {
         setIsLoading(false)
-        console.log(res.data)
         toast.success('Course Added Successfully')
         navigate('/dashboard/all-courses')
       })
