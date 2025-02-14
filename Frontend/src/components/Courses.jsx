@@ -12,7 +12,7 @@ const Courses = () => {
   }, [])
 
   const getCourse = () => {
-    axios.get('http://localhost:4200/course/all-courses', {
+    axios.get('https://ima-fp5f.onrender.com/course/all-courses', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }

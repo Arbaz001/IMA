@@ -20,7 +20,7 @@ const StudentDetail = () => {
 
     const getStudentDetail = () => {
         axios
-            .get(`http://localhost:4200/student/student-detail/${params.id}`, {
+            .get(`https://ima-fp5f.onrender.com/student/student-detail/${params.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -47,7 +47,7 @@ const StudentDetail = () => {
 
     const handleUpdate = () => {
         axios
-            .put(`http://localhost:4200/student/${params.id}`, editedStudent, {
+            .put(`https://ima-fp5f.onrender.com/student/${params.id}`, editedStudent, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -65,7 +65,7 @@ const StudentDetail = () => {
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this student?')) {
             axios
-                .delete(`http://localhost:4200/student/${params.id}`, {
+                .delete(`https://ima-fp5f.onrender.com/student/${params.id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

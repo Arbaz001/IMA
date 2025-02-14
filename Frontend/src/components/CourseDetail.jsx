@@ -18,7 +18,7 @@ const CourseDetail = () => {
 
   const getCourseDetail = () => {
     axios
-      .get(`http://localhost:4200/course/course-detail/${params.id}`, {
+      .get(`https://ima-fp5f.onrender.com/course/course-detail/${params.id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -57,7 +57,7 @@ const CourseDetail = () => {
     }
 
     axios
-      .put(`http://localhost:4200/course/${params.id}`, formData, {
+      .put(`https://ima-fp5f.onrender.com/course/${params.id}`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -76,7 +76,7 @@ const CourseDetail = () => {
   const handleDelete = () => {
     if (window.confirm('Are you sure you want to delete this course?')) {
       axios
-        .delete(`http://localhost:4200/course/${params.id}`, {
+        .delete(`https://ima-fp5f.onrender.com/course/${params.id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

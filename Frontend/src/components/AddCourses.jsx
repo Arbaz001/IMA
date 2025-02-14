@@ -27,7 +27,7 @@ const AddCourses = () => {
     formData.append('endDate', endDate)
     formData.append('image', image)
 
-    axios.post('http://localhost:4200/course/add-course', formData, {
+    axios.post('https://ima-fp5f.onrender.com/course/add-course', formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }

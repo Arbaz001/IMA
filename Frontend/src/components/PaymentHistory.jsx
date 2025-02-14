@@ -20,7 +20,7 @@ const PaymentHistory = () => {
         return;
       }
 
-      const response = await axios.get("http://localhost:4200/fee/payment-history", {
+      const response = await axios.get("https://ima-fp5f.onrender.com/fee/payment-history", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.data.paymentHistory) {

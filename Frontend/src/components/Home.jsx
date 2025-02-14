@@ -36,7 +36,7 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     setRefreshing(true);
     try {
-      const response = await axios.get("http://localhost:4200/course/home/", {
+      const response = await axios.get("https://ima-fp5f.onrender.com/course/home/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

@@ -11,7 +11,7 @@ const Students = () => {
     getStudentList()
   })
   const getStudentList = () => {
-    axios.get('http://localhost:4200/student/all-students', {
+    axios.get('https://ima-fp5f.onrender.com/student/all-students', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

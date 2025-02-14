@@ -21,7 +21,7 @@ function Login() {
     setLoading(true);
     
     try {
-      const res = await axios.post('http://localhost:4200/user/login', {
+      const res = await axios.post('https://ima-fp5f.onrender.com/user/login', {
         email,
         password
       });

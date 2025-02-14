@@ -31,7 +31,7 @@ const AddStudent = () => {
     formData.append('courseId', course)
     formData.append('image', image)
 
-    axios.post('http://localhost:4200/student/add-student', formData, {
+    axios.post('https://ima-fp5f.onrender.com/student/add-student', formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
@@ -59,7 +59,7 @@ const AddStudent = () => {
   }, [])
 
   const getCourse = () => {
-    axios.get('http://localhost:4200/course/all-courses', {
+    axios.get('https://ima-fp5f.onrender.com/course/all-courses', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }

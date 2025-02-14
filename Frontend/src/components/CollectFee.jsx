@@ -28,7 +28,7 @@ const AddFee = () => {
     formData.append('remark', remark)
     formData.append('courseId', course)
 
-    axios.post('http://localhost:4200/fee/add-fee', formData, {
+    axios.post('https://ima-fp5f.onrender.com/fee/add-fee', formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
@@ -51,7 +51,7 @@ const AddFee = () => {
   }, [])
 
   const getCourse = () => {
-    axios.get('http://localhost:4200/course/all-courses', {
+    axios.get('https://ima-fp5f.onrender.com/course/all-courses', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
