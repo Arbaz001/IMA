@@ -58,7 +58,7 @@ function Login() {
           <h2 className="text-2xl font-extrabold mb-8 text-center">Login With Your Account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium">
+              <label htmlFor="email" className="block text-sm font-bold">
                 Email
               </label>
               <input
@@ -71,7 +71,7 @@ function Login() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-medium">
+              <label htmlFor="password" className="block text-sm font-bold">
                 Password
               </label>
               <input
@@ -92,7 +92,7 @@ function Login() {
               {isLoading ? 'Logging...' : 'Login'}
             </button>
           </form>
-          <p className="mt-4 text-center text-sm">
+          <p className="mt-4 text-center text-sm font-semibold">
             Don't have an account?{' '}
             <Link to="/" className="text-[#6C63FF] hover:underline">
               Create Your Account

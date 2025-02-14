@@ -64,7 +64,7 @@ function Signup() {
           <h2 className="text-2xl font-extrabold mb-8 text-center">Create Your Account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="institute" className="block text-sm font-medium">
+              <label htmlFor="institute" className="block text-sm font-bold">
                 Institute Full Name
               </label>
               <input
@@ -77,7 +77,7 @@ function Signup() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium">
+              <label htmlFor="email" className="block text-sm font-bold">
                 Email
               </label>
               <input
@@ -90,7 +90,7 @@ function Signup() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="phone" className="block text-sm font-medium">
+              <label htmlFor="phone" className="block text-sm font-bold">
                 Phone
               </label>
               <input
@@ -103,7 +103,7 @@ function Signup() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-medium">
+              <label htmlFor="password" className="block text-sm font-bold">
                 Password
               </label>
               <input
@@ -116,7 +116,7 @@ function Signup() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="file" className="block text-sm font-medium">
+              <label htmlFor="file" className="block text-sm font-bold">
                 Upload File
               </label>
               <input
@@ -124,7 +124,7 @@ function Signup() {
                 onChange={filehandler}
                 id="file"
                 type="file"
-                className="w-full cursor-pointer"
+                className="w-full cursor-pointer font-bold "
               />
               {imageUrl && <img className='h-40' alt='your logo' src={imageUrl} />}
             </div>
@@ -140,7 +140,7 @@ function Signup() {
             </button>
 
           </form>
-          <p className="mt-4 text-center text-sm">
+          <p className="mt-4 text-center text-sm font-semibold">
             Already have an account?{" "}
             <Link to="/login" className="text-[#6C63FF] hover:underline">
               Login With Your Account
