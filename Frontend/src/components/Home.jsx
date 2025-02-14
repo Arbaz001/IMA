@@ -25,10 +25,10 @@ const Dashboard = () => {
   useEffect(() => {
     fetchDashboardData();
 
-    // ✅ Auto-refresh every 10 sec
+    // ✅ Auto-refresh every 10 minutes after
     const interval = setInterval(() => {
       fetchDashboardData();
-    }, 10000);
+    }, 600000);
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
@@ -44,7 +44,6 @@ const Dashboard = () => {
       setData(response.data || {}); // ✅ Empty object fix
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch dashboard data");
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -148,7 +147,7 @@ const GraphCard = ({ title, data, color }) => {
   }));
 
   return (
-    <div className={`${color} p-8 rounded-lg shadow-md text-center`}>
+    <div className={`${color} p-8 rounded-lg shadow-md font-bold text-green-900 text-center`}>
       <h2 className="text-3xl font-bold">{data || 0}</h2>
       <p className="text-white font-bold mt-2">{title}</p>
       <ResponsiveContainer width="100%" height={150}>
