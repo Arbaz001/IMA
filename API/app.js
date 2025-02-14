@@ -11,9 +11,9 @@ const courseRoute = require('./routes/course')
 const feeRoute = require('./routes/fee')
 const studentRoute = require('./routes/student')
 require("dotenv").config()
-const db_password=process.env.db_password
+const db_link = process.env.db_link
 
-mongoose.connect(`mongodb+srv://AliArbaz:${db_password}@ima.y304n.mongodb.net/?retryWrites=true&w=majority&appName=IMA`)
+mongoose.connect(`${db_link}`)
 .then(()=>{
     console.log("Connected to MongoDB")
 })
