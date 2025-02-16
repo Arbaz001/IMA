@@ -1,10 +1,9 @@
-// App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
-import {ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import AddStudent from './components/AddStudent';
 import Students from './components/Students';
 import AddCourses from './components/AddCourses';
@@ -22,17 +21,16 @@ function App() {
         <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />}>
-          {/* Child Routes */}
-          <Route path="" element={<Home/>} />
-          <Route path="home" element={<Home/>} />
+          <Route path="" element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route path="all-courses" element={<Courses />} />
           <Route path="add-course" element={<AddCourses />} />
           <Route path="all-students" element={<Students />} />
           <Route path="add-students" element={<AddStudent />} />
           <Route path="collect-fee" element={<CollectFee />} />
           <Route path="payment-history" element={<PaymentHistory />} />
-          <Route path="course-detail/:id" element={<CourseDetail/>} />
-          <Route path="student-detail/:id" element={<StudentDetail/>} />
+          <Route path="course-detail/:id" element={<CourseDetail />} />
+          <Route path="student-detail/:id" element={<StudentDetail />} />
         </Route>
       </Routes>
       <ToastContainer autoClose={1000} />
