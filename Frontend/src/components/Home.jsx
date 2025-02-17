@@ -43,7 +43,7 @@ const Dashboard = () => {
       });
       setData(response.data || {}); // ✅ Empty object fix
     } catch (error) {
-      console.error(error);
+      console.error("❌ API Request Failed:", error?.response?.status, error?.response?.data || error.message);
     } finally {
       setLoading(false);
       setRefreshing(false);
