@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { API_URL } from "../api";
 
 const StudentDetail = () => {
     const Navigate = useNavigate()
@@ -20,7 +21,7 @@ const StudentDetail = () => {
 
     const getStudentDetail = () => {
         axios
-            .get(`https://ima-fp5f.onrender.com/student/student-detail/${params.id}`, {
+            .get(`${API_URL}/student/student-detail/${params.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -47,7 +48,7 @@ const StudentDetail = () => {
 
     const handleUpdate = () => {
         axios
-            .put(`https://ima-fp5f.onrender.com/student/${params.id}`, editedStudent, {
+            .put(`${API_URL}/student/${params.id}`, editedStudent, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -65,7 +66,7 @@ const StudentDetail = () => {
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this student?')) {
             axios
-                .delete(`https://ima-fp5f.onrender.com/student/${params.id}`, {
+                .delete(`${API_URL}/student/${params.id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Lottie from "lottie-react";
 import Logo from "../assets/Logo";
+import { API_URL } from '../api';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ function Login() {
     setLoading(true);
     
     try {
-      const res = await axios.post('https://ima-fp5f.onrender.com/user/login', {
+      const res = await axios.post(`${API_URL}/user/login`, {
         email,
         password
       });

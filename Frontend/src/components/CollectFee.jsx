@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from "../api";
 
 const AddFee = () => {
   const [fullName, setFullName] = useState('')
@@ -28,7 +29,7 @@ const AddFee = () => {
     formData.append('remark', remark)
     formData.append('courseId', course)
 
-    axios.post('https://ima-fp5f.onrender.com/fee/add-fee', formData, {
+    axios.post(`${API_URL}/fee/add-fee`, formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
@@ -51,7 +52,7 @@ const AddFee = () => {
   }, [])
 
   const getCourse = () => {
-    axios.get('https://ima-fp5f.onrender.com/course/all-courses', {
+    axios.get(`${API_URL}/course/all-courses`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }

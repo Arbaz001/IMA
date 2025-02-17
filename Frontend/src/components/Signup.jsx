@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Lottie from "lottie-react";
 import Logo from "../assets/Logo";
+import { API_URL } from "../api";
 
 
 function Signup() {
@@ -29,7 +30,7 @@ function Signup() {
     formData.append('password', password)
     formData.append('image', image)
 
-    axios.post('https://ima-fp5f.onrender.com/user/signup', formData)
+    axios.post(`${API_URL}/user/signup`, formData)
       .then(res => {
         setLoading(false)
         toast.success('Your Account Is Created')

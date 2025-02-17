@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { API_URL } from "../api";
 import {
   LineChart,
   Line,
@@ -36,7 +36,7 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     setRefreshing(true);
     try {
-      const response = await axios.get("https://ima-fp5f.onrender.com/course/home/", {
+      const response = await axios.get(`${API_URL}/course/home/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

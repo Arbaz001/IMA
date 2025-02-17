@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { API_URL } from "../api";
 const AddCourses = () => {
   const [courseName, setCourseName] = useState('')
   const [description, setDescription] = useState('')
@@ -27,7 +27,7 @@ const AddCourses = () => {
     formData.append('endDate', endDate)
     formData.append('image', image)
 
-    axios.post('https://ima-fp5f.onrender.com/course/add-course', formData, {
+    axios.post(`${API_URL}/course/add-course`, formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }

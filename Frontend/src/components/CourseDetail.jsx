@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { API_URL } from "../api";
 
 const CourseDetail = () => {
   const params = useParams()
@@ -18,7 +19,7 @@ const CourseDetail = () => {
 
   const getCourseDetail = () => {
     axios
-      .get(`https://ima-fp5f.onrender.com/course/course-detail/${params.id}`, {
+      .get(`${API_URL}/course/course-detail/${params.id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -57,7 +58,7 @@ const CourseDetail = () => {
     }
 
     axios
-      .put(`https://ima-fp5f.onrender.com/course/${params.id}`, formData, {
+      .put(`${API_URL}/course/${params.id}`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -76,7 +77,7 @@ const CourseDetail = () => {
   const handleDelete = () => {
     if (window.confirm('Are you sure you want to delete this course?')) {
       axios
-        .delete(`https://ima-fp5f.onrender.com/course/${params.id}`, {
+        .delete(`${API_URL}/course/${params.id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

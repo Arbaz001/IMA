@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from "../api";
 
 const AddStudent = () => {
   const [fullName, setFullName] = useState('')
@@ -31,7 +32,7 @@ const AddStudent = () => {
     formData.append('courseId', course)
     formData.append('image', image)
 
-    axios.post('https://ima-fp5f.onrender.com/student/add-student', formData, {
+    axios.post(`${API_URL}/student/add-student`, formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
@@ -59,7 +60,7 @@ const AddStudent = () => {
   }, [])
 
   const getCourse = () => {
-    axios.get('https://ima-fp5f.onrender.com/course/all-courses', {
+    axios.get(`${API_URL}/course/all-courses`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }

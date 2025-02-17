@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-import {Search, Bell, Settings, ChevronDown} from "lucide-react";
+import {Search, Bell} from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {

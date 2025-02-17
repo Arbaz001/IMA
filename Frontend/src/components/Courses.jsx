@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
+import { API_URL } from "../api";
 const Courses = () => {
   const [courses, setCourses] = useState([])
 
@@ -12,7 +12,7 @@ const Courses = () => {
   }, [])
 
   const getCourse = () => {
-    axios.get('https://ima-fp5f.onrender.com/course/all-courses', {
+    axios.get(`${API_URL}/course/all-courses`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }

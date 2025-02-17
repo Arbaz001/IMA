@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { API_URL } from "../api";
 const PaymentHistory = () => {
   const [paymentList, setPaymentList] = useState([]);
   const Navigate = useNavigate();
@@ -20,7 +20,7 @@ const PaymentHistory = () => {
         return;
       }
 
-      const response = await axios.get("https://ima-fp5f.onrender.com/fee/payment-history", {
+      const response = await axios.get(`${API_URL}/fee/payment-history`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.data.paymentHistory) {

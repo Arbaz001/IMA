@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { API_URL } from "../api";
 
 const Students = () => {
   const [studentList, setStudentList] = useState()
@@ -11,7 +12,7 @@ const Students = () => {
     getStudentList()
   })
   const getStudentList = () => {
-    axios.get('https://ima-fp5f.onrender.com/student/all-students', {
+    axios.get(`${API_URL}/student/all-students`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
