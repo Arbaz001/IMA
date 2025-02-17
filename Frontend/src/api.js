@@ -1,1 +1,1 @@
-export const API_URL = process.env.REACT_APP_API_URL; // ✅ Sahi
+export const API_URL = "https://ima-fp5f.onrender.com"; 
