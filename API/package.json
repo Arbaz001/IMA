@@ -11,7 +11,7 @@
     "rest",
     "api"
   ],
-  "author": "",
+  "author": "Arbaz Ali",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
