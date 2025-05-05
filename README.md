@@ -32,7 +32,7 @@ The **Institute Management Web App** is a powerful, user-friendly platform desig
 - **Deployment:** Render, Vercel
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 Contributions are welcome! Feel free to submit a pull request or open an issue.
