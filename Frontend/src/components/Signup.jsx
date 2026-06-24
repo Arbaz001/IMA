@@ -53,15 +53,15 @@ function Signup() {
   return (
     <main className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Section */}
-      <div className="w-full lg:w-1/2 bg-brutal-blue p-8 flex flex-col items-center justify-center text-white border-b-[3px] lg:border-b-0 lg:border-r-[3px] border-black">
+      <div className="w-full lg:w-1/2 bg-brutal-blue p-8 flex flex-col items-center justify-center text-white border-b-2 lg:border-b-0 lg:border-r-2 border-black">
         <div className="max-w-md text-center">
-          <div className="bg-white border-[3px] border-black shadow-brutal-lg p-4">
+          <div className="bg-white border-2 border-black shadow-brutal-lg p-4">
             <Lottie animationData={Logo} loop={true} />
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight mt-6">
             Institute Management App
           </h1>
-          <p className="inline-block bg-brutal-yellow text-black border-[3px] border-black px-3 py-1 font-extrabold uppercase text-sm tracking-wide mt-4 shadow-brutal-sm">
+          <p className="inline-block bg-brutal-yellow text-black border-2 border-black px-3 py-1 font-extrabold uppercase text-sm tracking-wide mt-4 shadow-brutal-sm">
             Manage all your data the easy way
           </p>
         </div>
@@ -122,7 +122,7 @@ function Signup() {
                   type="button"
                   onClick={() => setShowPassword((s) => !s)}
                   aria-label={showPassword ? "Hide password" : "Show password"}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-brutal-yellow border-[3px] border-black shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-brutal-yellow border-2 border-black shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -135,9 +135,9 @@ function Signup() {
                 onChange={filehandler}
                 id="file"
                 type="file"
-                className="brutal-input cursor-pointer file:mr-3 file:border-[3px] file:border-black file:bg-brutal-yellow file:font-extrabold file:uppercase file:text-xs file:px-3 file:py-1 file:cursor-pointer"
+                className="brutal-input cursor-pointer file:mr-3 file:border-2 file:border-black file:bg-brutal-yellow file:font-extrabold file:uppercase file:text-xs file:px-3 file:py-1 file:cursor-pointer"
               />
-              {imageUrl && <img className='h-40 mt-3 border-[3px] border-black shadow-brutal-sm' alt='your logo' src={imageUrl} />}
+              {imageUrl && <img className='h-40 mt-3 border-2 border-black shadow-brutal-sm' alt='your logo' src={imageUrl} />}
             </div>
 
             <button type="submit" className="brutal-btn-red w-full" disabled={isLoading}>

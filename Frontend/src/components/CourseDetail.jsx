@@ -102,7 +102,7 @@ const CourseDetail = () => {
                 <img
                   src={imageFile ? URL.createObjectURL(imageFile) : course.imageUrl}
                   alt={course.courseName}
-                  className="w-full md:w-96 h-56 object-cover border-[3px] border-black shadow-brutal"
+                  className="w-full md:w-96 h-56 object-cover border-2 border-black shadow-brutal"
                 />
                 {isEditing && (
                   <input
@@ -186,7 +186,7 @@ const CourseDetail = () => {
                   {studentList.map((student) => (
                     <tr onClick={() => { navigate('/dashboard/student-detail/' + student._id) }} key={student._id} className="brutal-row">
                       <td>
-                        <img src={student.imageUrl} alt={student.fullName} className="w-12 h-12 object-cover border-[3px] border-black" />
+                        <img src={student.imageUrl} alt={student.fullName} className="w-12 h-12 object-cover border-2 border-black" />
                       </td>
                       <td>{student.fullName}</td>
                       <td>{student.phone}</td>

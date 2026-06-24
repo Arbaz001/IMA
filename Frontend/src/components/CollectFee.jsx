@@ -69,7 +69,7 @@ const AddFee = () => {
   return (
     <div className="w-full flex items-start justify-center py-2">
       <div className="w-full max-w-[600px] brutal-card p-5 md:p-8 animate-pop">
-        <h2 className="text-2xl font-extrabold uppercase tracking-tight mb-6 text-center bg-brutal-green border-[3px] border-black px-4 py-2 shadow-brutal-sm">Collect Fee</h2>
+        <h2 className="text-2xl font-extrabold uppercase tracking-tight mb-6 text-center bg-brutal-green border-2 border-black px-4 py-2 shadow-brutal-sm">Collect Fee</h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             required

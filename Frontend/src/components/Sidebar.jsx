@@ -13,10 +13,10 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 shrink-0 bg-brutal-bg border-r-[3px] border-black flex flex-col sticky top-0 h-screen">
-      <div className="p-5 border-b-[3px] border-black bg-brutal-yellow">
+    <aside className="w-64 shrink-0 bg-brutal-bg border-r-2 border-black flex flex-col sticky top-0 h-screen">
+      <div className="p-5 border-b-2 border-black bg-brutal-yellow">
         <h1 className="text-3xl font-extrabold uppercase tracking-tight flex items-center gap-2">
-          <span className="bg-black text-brutal-yellow p-1.5 border-[3px] border-black shadow-brutal-xs">
+          <span className="bg-black text-brutal-yellow p-1.5 border-2 border-black shadow-brutal-xs">
             <BookOpen className="w-6 h-6" />
           </span>
           IMA
@@ -35,7 +35,7 @@ const Sidebar = () => {
                 <NavLink
                   to={`/dashboard/${item.path}`}
                   className={({ isActive }) =>
-                    `w-full flex items-center gap-3 px-3 py-2.5 border-[3px] border-black font-extrabold uppercase text-sm tracking-wide transition-all duration-150 ${
+                    `w-full flex items-center gap-3 px-3 py-2.5 border-2 border-black font-extrabold uppercase text-sm tracking-wide transition-all duration-150 ${
                       isActive
                         ? `${item.color} shadow-none translate-x-[3px] translate-y-[3px]`
                         : "bg-white shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-xs"
@@ -51,7 +51,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <div className="p-4 border-t-[3px] border-black bg-black text-white">
+      <div className="p-4 border-t-2 border-black bg-black text-white">
         <div className="flex items-center gap-2 mb-2 font-extrabold uppercase text-sm tracking-wide">
           <Contact className="w-4 h-4" />
           Contact Developer

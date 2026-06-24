@@ -80,7 +80,7 @@ const AddStudent = () => {
   return (
     <div className="w-full flex items-start justify-center py-2">
       <div className="w-full max-w-[600px] brutal-card p-5 md:p-8 animate-pop">
-        <h2 className="text-2xl font-extrabold uppercase tracking-tight mb-6 text-center bg-brutal-pink border-[3px] border-black px-4 py-2 shadow-brutal-sm">Add New Student</h2>
+        <h2 className="text-2xl font-extrabold uppercase tracking-tight mb-6 text-center bg-brutal-pink border-2 border-black px-4 py-2 shadow-brutal-sm">Add New Student</h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             required
@@ -127,13 +127,13 @@ const AddStudent = () => {
             required
             onChange={filehandler}
             type="file"
-            className="brutal-input cursor-pointer file:mr-3 file:border-[3px] file:border-black file:bg-brutal-yellow file:font-extrabold file:uppercase file:text-xs file:px-3 file:py-1 file:cursor-pointer"
+            className="brutal-input cursor-pointer file:mr-3 file:border-2 file:border-black file:bg-brutal-yellow file:font-extrabold file:uppercase file:text-xs file:px-3 file:py-1 file:cursor-pointer"
           />
           {imageUrl && (
             <img
               src={imageUrl}
               alt="Student"
-              className="w-[200px] h-[150px] object-cover border-[3px] border-black shadow-brutal-sm mx-auto"
+              className="w-[200px] h-[150px] object-cover border-2 border-black shadow-brutal-sm mx-auto"
             />
           )}
 

@@ -37,7 +37,7 @@ const Courses = () => {
               key={course._id}
               className="brutal-card brutal-hover cursor-pointer p-3"
             >
-              <img src={course.imageUrl} alt={course.courseName} className="w-full h-40 object-cover border-[3px] border-black mb-3" />
+              <img src={course.imageUrl} alt={course.courseName} className="w-full h-40 object-cover border-2 border-black mb-3" />
               <p className="text-neutral-900 text-lg mb-2 font-extrabold uppercase tracking-tight leading-tight">{course.courseName}</p>
               <span className="brutal-chip bg-brutal-green">₹{course.price}</span>
             </div>

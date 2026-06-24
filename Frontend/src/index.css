@@ -22,28 +22,22 @@
     margin: 0;
     font-family: '"Archivo"', system-ui, sans-serif;
     color: #111111;
-    background-color: #F4F1E9;
-    /* Subtle brutalist grid backdrop — pure CSS, no images, zero runtime cost */
-    background-image:
-      linear-gradient(to right, rgba(17, 17, 17, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(17, 17, 17, 0.05) 1px, transparent 1px);
-    background-size: 28px 28px;
+    background-color: #F7F5EF; /* plain soft cream — no busy grid (lighter look) */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  /* Brutalist scrollbar */
+  /* Slim brutalist scrollbar */
   ::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #F4F1E9;
-    border-left: 3px solid #111;
+    background: #F7F5EF;
   }
   ::-webkit-scrollbar-thumb {
     background: #111;
-    border: 3px solid #F4F1E9;
+    border: 2px solid #F7F5EF;
   }
 
   ::selection {
@@ -53,30 +47,30 @@
 }
 
 @layer components {
-  /* ---- Core building blocks ---- */
+  /* ---- Core building blocks (lightweight brutalism: 2px borders, small offset shadows) ---- */
   .brutal-card {
-    @apply bg-white border-[3px] border-black shadow-brutal;
+    @apply bg-white border-2 border-black shadow-brutal-sm;
   }
 
   .brutal-input {
-    @apply w-full bg-white border-[3px] border-black px-4 py-3 font-bold text-black
+    @apply w-full bg-white border-2 border-black px-3.5 py-2.5 font-medium text-black
            placeholder:text-black/40 outline-none transition-all duration-150
-           focus:shadow-brutal-sm focus:-translate-y-0.5;
+           focus:shadow-brutal-xs focus:-translate-y-px;
   }
 
   .brutal-label {
-    @apply block text-xs font-extrabold uppercase tracking-widest mb-1.5;
+    @apply block text-xs font-bold uppercase tracking-wide mb-1.5 text-black/70;
   }
 
-  /* Buttons: hard shadow that "presses in" on hover/active */
+  /* Buttons: subtle hard shadow that "presses in" on hover/active */
   .brutal-btn {
-    @apply inline-flex items-center justify-center gap-2 border-[3px] border-black
-           font-extrabold uppercase tracking-wide px-5 py-3 shadow-brutal
+    @apply inline-flex items-center justify-center gap-2 border-2 border-black
+           font-bold tracking-wide px-4 py-2.5 shadow-brutal-sm
            transition-all duration-150 select-none
-           hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none
-           active:translate-x-[5px] active:translate-y-[5px] active:shadow-none
+           hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none
+           active:translate-x-[2px] active:translate-y-[2px] active:shadow-none
            disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-x-0
-           disabled:translate-y-0 disabled:shadow-brutal;
+           disabled:translate-y-0 disabled:shadow-brutal-sm;
   }
   .brutal-btn-yellow { @apply brutal-btn bg-brutal-yellow text-black; }
   .brutal-btn-pink   { @apply brutal-btn bg-brutal-pink text-black; }
@@ -85,40 +79,40 @@
   .brutal-btn-red    { @apply brutal-btn bg-brutal-red text-white; }
   .brutal-btn-black  { @apply brutal-btn bg-black text-white; }
 
-  /* Section / page heading */
+  /* Section / page heading — simple bold text with a yellow underline accent */
   .brutal-title {
-    @apply text-3xl md:text-4xl font-extrabold uppercase tracking-tight inline-block
-           bg-brutal-yellow border-[3px] border-black px-4 py-1.5 shadow-brutal-sm;
+    @apply text-2xl md:text-3xl font-extrabold tracking-tight inline-block
+           border-b-4 border-brutal-yellow pb-1;
   }
 
   /* Pill / tag chip */
   .brutal-chip {
-    @apply inline-flex items-center border-[3px] border-black px-3 py-1
-           text-sm font-extrabold uppercase tracking-wide shadow-brutal-xs;
+    @apply inline-flex items-center border-2 border-black px-2.5 py-0.5
+           text-sm font-bold tracking-wide;
   }
 
-  /* Table shell */
+  /* Table shell — light: outer border + slim row separators (no heavy per-cell boxes) */
   .brutal-table {
     @apply w-full border-collapse bg-white;
   }
   .brutal-table th {
-    @apply bg-black text-white text-left px-4 py-3 font-extrabold uppercase
-           tracking-wider text-xs border-[3px] border-black;
+    @apply bg-black text-white text-left px-4 py-2.5 font-bold uppercase
+           tracking-wide text-xs;
   }
   .brutal-table td {
-    @apply px-4 py-3 font-bold border-[3px] border-black align-middle;
+    @apply px-4 py-2.5 font-medium border-b border-black/10 align-middle;
   }
   .brutal-row {
-    @apply transition-colors duration-100 hover:bg-brutal-yellow cursor-pointer;
+    @apply transition-colors duration-100 hover:bg-brutal-yellow/40 cursor-pointer;
   }
 }
 
-/* Brutalist toast overrides (react-toastify) */
+/* Brutalist toast overrides (react-toastify) — lighter */
 .Toastify__toast {
-  border: 3px solid #111 !important;
+  border: 2px solid #111 !important;
   border-radius: 0 !important;
-  box-shadow: 6px 6px 0 0 #111 !important;
-  font-weight: 800 !important;
+  box-shadow: 3px 3px 0 0 #111 !important;
+  font-weight: 700 !important;
   font-family: '"Archivo"', system-ui, sans-serif !important;
 }
 .Toastify__toast--success { background: #36E07C !important; color: #111 !important; }
@@ -127,16 +121,16 @@
 .Toastify__progress-bar   { background: #111 !important; }
 
 @layer utilities {
-  /* GPU-accelerated lift on hover for cards (keeps interaction snappy) */
+  /* GPU-accelerated subtle lift on hover for cards (keeps interaction snappy) */
   .brutal-hover {
     @apply transition-transform duration-150 will-change-transform
-           hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-lg;
+           hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal;
   }
   .animate-pop {
     animation: brutal-pop 0.18s ease-out;
   }
   @keyframes brutal-pop {
-    from { transform: translateY(6px); opacity: 0; }
+    from { transform: translateY(5px); opacity: 0; }
     to   { transform: translateY(0); opacity: 1; }
   }
 }

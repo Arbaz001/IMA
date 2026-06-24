@@ -83,7 +83,7 @@ const Home = () => {
                 <td>
                   <img
                     src={student.imageUrl || "https://via.placeholder.com/40"}
-                    className="h-10 w-10 object-cover border-[3px] border-black"
+                    className="h-10 w-10 object-cover border-2 border-black"
                     alt="pic"
                   />
                 </td>
@@ -134,11 +134,11 @@ const StatCard = ({ title, value, color, Icon, prefix = "" }) => {
           <h2 className="text-4xl font-extrabold">{prefix}{value || 0}</h2>
           <p className="font-extrabold uppercase tracking-widest text-sm mt-1">{title}</p>
         </div>
-        <span className="bg-black text-white p-2.5 border-[3px] border-black">
+        <span className="bg-black text-white p-2.5 border-2 border-black">
           <Icon className="w-6 h-6" />
         </span>
       </div>
-      <div className="bg-white border-[3px] border-black mt-3 p-1">
+      <div className="bg-white border-2 border-black mt-3 p-1">
         <ResponsiveContainer width="100%" height={120}>
           <LineChart data={chartData} margin={{ top: 6, right: 6, left: -20, bottom: 0 }}>
             <CartesianGrid strokeDasharray="4 4" stroke="#111" opacity={0.15} />

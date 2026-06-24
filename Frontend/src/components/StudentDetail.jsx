@@ -95,7 +95,7 @@ const StudentDetail = () => {
                                 <img
                                     src={imageFile ? URL.createObjectURL(imageFile) : student.imageUrl}
                                     alt={student.fullName || "Student Image"}
-                                    className="w-48 h-48 object-cover border-[3px] border-black shadow-brutal"
+                                    className="w-48 h-48 object-cover border-2 border-black shadow-brutal"
                                 />
                                 {isEditing && (
                                     <input
