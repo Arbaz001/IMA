@@ -86,142 +86,97 @@ const StudentDetail = () => {
     }
 
     return (
-        <div className="flex-1 bg-gray-100 w-full min-h-screen p-0">
+        <div className="space-y-6">
             {student ? (
-                <div className="bg-white p-4">
-                    <div className="flex gap-6">
-                        <div className="relative">
-                            <img
-                                src={imageFile ? URL.createObjectURL(imageFile) : student.imageUrl}
-                                alt={student.fullName || "Student Image"}
-                                className="w-56 h-56 object-cover rounded-full shadow-xl shadow-slate-600"
-                            />
-                            {isEditing && (
-                                <input
-                                    type="file"
-                                    onChange={handleImageChange}
-                                    className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                <>
+                    <div className="brutal-card p-5 animate-pop">
+                        <div className="flex flex-col md:flex-row gap-6">
+                            <div className="relative shrink-0 mx-auto md:mx-0">
+                                <img
+                                    src={imageFile ? URL.createObjectURL(imageFile) : student.imageUrl}
+                                    alt={student.fullName || "Student Image"}
+                                    className="w-48 h-48 object-cover border-[3px] border-black shadow-brutal"
                                 />
-                            )}
-                        </div>
-                        <div className="ml-5 mt-7">
-                            <h1 className="text-3xl font-extrabold mb-1 text-blue-700">
+                                {isEditing && (
+                                    <input
+                                        type="file"
+                                        onChange={handleImageChange}
+                                        className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                                    />
+                                )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <h1 className="text-3xl font-extrabold uppercase tracking-tight mb-3">
+                                    {isEditing ? (
+                                        <input type="text" name="fullName" value={editedStudent.fullName || ""} onChange={handleInputChange} className="brutal-input" />
+                                    ) : (
+                                        student.fullName || "N/A"
+                                    )}
+                                </h1>
+                                <div className="space-y-2 font-bold">
+                                    <p>Phone: {isEditing ? (
+                                        <input type="tel" name="phone" value={editedStudent.phone || ""} onChange={handleInputChange} className="brutal-input max-w-[200px] inline-block" />
+                                    ) : (student.phone || "N/A")}</p>
+                                    <p>Address: {isEditing ? (
+                                        <input type="text" name="address" value={editedStudent.address || ""} onChange={handleInputChange} className="brutal-input max-w-[260px] inline-block" />
+                                    ) : (student.address || "N/A")}</p>
+                                    <p>Email: {isEditing ? (
+                                        <input type="email" name="email" value={editedStudent.email || ""} onChange={handleInputChange} className="brutal-input max-w-[260px] inline-block" />
+                                    ) : (student.email || "N/A")}</p>
+                                    <p>Course:{" "}
+                                        <span
+                                            onClick={() => Navigate('/dashboard/course-detail/' + (course._id || ""))}
+                                            className="brutal-chip bg-brutal-sky cursor-pointer hover:bg-brutal-yellow"
+                                        >
+                                            {course.courseName || "N/A"}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex flex-row md:flex-col gap-3 shrink-0">
                                 {isEditing ? (
-                                    <input
-                                        type="text"
-                                        name="fullName"
-                                        value={editedStudent.fullName || ""}
-                                        onChange={handleInputChange}
-                                        className="border pl-3 text-balance font-extrabold rounded"
-                                    />
+                                    <button onClick={handleUpdate} className="brutal-btn-green">Save</button>
                                 ) : (
-                                    student.fullName || "N/A"
+                                    <button onClick={handleEditToggle} className="brutal-btn-yellow">Edit Student</button>
                                 )}
-                            </h1>
-                            <p className="font-bold text-gray-700 mb-1">
-                                Phone: {isEditing ? (
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={editedStudent.phone || ""}
-                                        onChange={handleInputChange}
-                                        className="border p-1 rounded"
-                                    />
-                                ) : (
-                                    student.phone || "N/A"
-                                )}
-                            </p>
-                            <p className="font-bold text-gray-700 mb-1">
-                                Address: {isEditing ? (
-                                    <input
-                                        type="text"
-                                        name="address"
-                                        value={editedStudent.address || ""}
-                                        onChange={handleInputChange}
-                                        className="border p-1 rounded"
-                                    />
-                                ) : (
-                                    student.address || "N/A"
-                                )}
-                            </p>
-                            <p className="font-bold text-gray-700 mb-1">
-                                Email: {isEditing ? (
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={editedStudent.email || ""}
-                                        onChange={handleInputChange}
-                                        className="border p-1 rounded"
-                                    />
-                                ) : (
-                                    student.email || "N/A"
-                                )}
-                            </p>
-                            <p
-                                onClick={() => Navigate('/dashboard/course-detail/' + (course._id || ""))}
-                                className="font-extrabold text-gray-700 mb-1 cursor-pointer"
-                            >
-                                Course: {course.courseName || "N/A"}
-                            </p>
-                        </div>
-                        <div className="ml-40 mt-12">
-                            <div className="space-x-2">
-                                {isEditing ? (
-                                    <button
-                                        onClick={handleUpdate}
-                                        className="bg-green-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                                    >
-                                        Save
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={handleEditToggle}
-                                        className="bg-yellow-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
-                                    >
-                                        Edit Student
-                                    </button>
-                                )}
-                                <button
-                                    onClick={handleDelete}
-                                    className="bg-red-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-red-600"
-                                >
-                                    Delete Student
-                                </button>
+                                <button onClick={handleDelete} className="brutal-btn-red">Delete Student</button>
                             </div>
                         </div>
                     </div>
 
-                    <h2 className="text-2xl text-center font-extrabold text-gray-800 mt-5 mb-4">Payment History</h2>
+                    <h2 className="brutal-title !text-2xl">Payment History</h2>
 
                     {paymentList.length === 0 ? (
-                        <div className="text-center mt-10">
-                            <p className="text-xl text-gray-500">🎓 No Student fee Submitted</p>
-                            <p className="text-md text-gray-400 mt-2">Students will Submit fees.</p>
+                        <div className="brutal-card p-10 text-center">
+                            <p className="text-xl font-extrabold uppercase tracking-wide">🎓 No Fee Submitted</p>
+                            <p className="text-sm font-bold opacity-60 mt-2">Payments will appear here once submitted.</p>
                         </div>
                     ) : (
-                        <table className="w-full text-left border-collapse mt-4">
-                            <thead>
-                                <tr className="bg-gray-200">
-                                    <th className="border-b p-3 text-red-600">Date</th>
-                                    <th className="border-b p-3 text-red-600">Amount</th>
-                                    <th className="border-b p-3 text-red-600">Remark</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {paymentList.map((payment) => (
-                                    <tr key={payment._id} className="hover:bg-gray-100">
-                                        <td className="p-3 text-gray-700">{new Date(payment.createdAt).toLocaleDateString()} {/* ✅ Date Formatting */}</td>
-                                        <td className="p-3 font-medium text-gray-800">{payment.amount}</td>
-                                        <td className="p-3 text-gray-700">{payment.remark}</td>
+                        <div className="brutal-card overflow-x-auto">
+                            <table className="brutal-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Remark</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {paymentList.map((payment) => (
+                                        <tr key={payment._id} className="brutal-row cursor-default">
+                                            <td>{new Date(payment.createdAt).toLocaleDateString()}</td>
+                                            <td><span className="brutal-chip bg-brutal-green">₹{payment.amount}</span></td>
+                                            <td>{payment.remark}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     )}
-                </div>
+                </>
             ) : (
-                <div className="flex items-center justify-center h-screen">
-                    <p className="text-xl text-gray-600">Loading Student details...</p>
+                <div className="flex items-center justify-center h-[60vh]">
+                    <p className="brutal-card bg-brutal-yellow px-8 py-6 text-xl font-extrabold uppercase tracking-widest">Loading student details...</p>
                 </div>
             )}
         </div>

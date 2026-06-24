@@ -3,58 +3,65 @@ import { Home, BookOpen, PlusCircle, Users, UserPlus, CreditCard, History, Phone
 
 const Sidebar = () => {
   const menuItems = [
-    { name: "Home", icon: <Home className="w-4 h-4 mr-2" />, path: "home" },
-    { name: "All Courses", icon: <BookOpen className="w-4 h-4 mr-2" />, path: "all-courses" },
-    { name: "Add Course", icon: <PlusCircle className="w-4 h-4 mr-2" />, path: "add-course" },
-    { name: "All Students", icon: <Users className="w-4 h-4 mr-2" />, path: "all-students" },
-    { name: "Add Students", icon: <UserPlus className="w-4 h-4 mr-2" />, path: "add-students" },
-    { name: "Collect Fee", icon: <CreditCard className="w-4 h-4 mr-2" />, path: "collect-fee" },
-    { name: "Payment History", icon: <History className="w-4 h-4 mr-2" />, path: "payment-history" },
+    { name: "Home", icon: Home, path: "home", color: "bg-brutal-yellow" },
+    { name: "All Courses", icon: BookOpen, path: "all-courses", color: "bg-brutal-sky" },
+    { name: "Add Course", icon: PlusCircle, path: "add-course", color: "bg-brutal-green" },
+    { name: "All Students", icon: Users, path: "all-students", color: "bg-brutal-pink" },
+    { name: "Add Students", icon: UserPlus, path: "add-students", color: "bg-brutal-orange" },
+    { name: "Collect Fee", icon: CreditCard, path: "collect-fee", color: "bg-brutal-purple" },
+    { name: "Payment History", icon: History, path: "payment-history", color: "bg-brutal-red" },
   ];
 
   return (
-    <div className="w-64 font-bold bg-gradient-to-b from-[#6C3CE9] to-[#5B32C6] text-white flex flex-col shadow-xl">
-      <div className="p-6 border-b border-white/10">
-        <h1 className="text-2xl font-bold flex items-center">
-          <BookOpen className="w-7 h-7 mr-2" />
+    <aside className="w-64 shrink-0 bg-brutal-bg border-r-[3px] border-black flex flex-col sticky top-0 h-screen">
+      <div className="p-5 border-b-[3px] border-black bg-brutal-yellow">
+        <h1 className="text-3xl font-extrabold uppercase tracking-tight flex items-center gap-2">
+          <span className="bg-black text-brutal-yellow p-1.5 border-[3px] border-black shadow-brutal-xs">
+            <BookOpen className="w-6 h-6" />
+          </span>
           IMA
         </h1>
-        <p className="text-sm opacity-75 mt-1">Manage your App in easy way</p>
+        <p className="text-xs font-bold uppercase tracking-widest mt-2 opacity-70">
+          Manage your app the easy way
+        </p>
       </div>
 
-      <nav className="flex-1 p-4">
-        <ul className="space-y-1.5">
-          {menuItems.map((item) => (
-            <li key={item.name}>
-              <NavLink
-                to={`/dashboard/${item.path}`}
-                className={({ isActive }) =>
-                  `w-full flex items-center px-4 py-2.5 rounded-lg transition-all duration-200 ${
-                    isActive
-                      ? "bg-white/15 shadow-lg shadow-black"
-                      : "hover:bg-white/15 hover:shadow-md hover:shadow-black"
-                  }`
-                }
-              >
-                {item.icon}
-                {item.name}
-              </NavLink>
-            </li>
-          ))}
+      <nav className="flex-1 p-4 overflow-y-auto">
+        <ul className="space-y-3">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li key={item.name}>
+                <NavLink
+                  to={`/dashboard/${item.path}`}
+                  className={({ isActive }) =>
+                    `w-full flex items-center gap-3 px-3 py-2.5 border-[3px] border-black font-extrabold uppercase text-sm tracking-wide transition-all duration-150 ${
+                      isActive
+                        ? `${item.color} shadow-none translate-x-[3px] translate-y-[3px]`
+                        : "bg-white shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-xs"
+                    }`
+                  }
+                >
+                  <Icon className="w-4 h-4 shrink-0" />
+                  {item.name}
+                </NavLink>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
-      <div className="p-4 border-t border-white/10 bg-white/5 backdrop-blur-lg">
-        <div className="flex items-center mb-2 hover:text-white/90 cursor-pointer transition-colors">
-          <Contact className="w-4 h-4 mr-2" />
+      <div className="p-4 border-t-[3px] border-black bg-black text-white">
+        <div className="flex items-center gap-2 mb-2 font-extrabold uppercase text-sm tracking-wide">
+          <Contact className="w-4 h-4" />
           Contact Developer
         </div>
-        <div className="flex items-center text-sm text-white/75 hover:text-white/90 cursor-pointer transition-colors">
-          <Phone className="w-4 h-4 mr-2" />
+        <a href="tel:+916287338719" className="flex items-center gap-2 text-sm font-bold text-brutal-yellow hover:underline">
+          <Phone className="w-4 h-4" />
           +91 6287338719
-        </div>
+        </a>
       </div>
-    </div>
+    </aside>
   );
 };
 

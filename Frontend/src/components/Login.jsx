@@ -4,12 +4,14 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Lottie from "lottie-react";
+import { Eye, EyeOff } from "lucide-react";
 import Logo from "../assets/Logo";
 import { API_URL } from '../api';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -45,57 +47,67 @@ function Login() {
   return (
     <main className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Section */}
-      <div className="w-full lg:w-1/2 bg-[#6C63FF] p-8 flex flex-col items-center justify-center text-white">
+      <div className="w-full lg:w-1/2 bg-brutal-blue p-8 flex flex-col items-center justify-center text-white border-b-[3px] lg:border-b-0 lg:border-r-[3px] border-black">
         <div className="max-w-md text-center">
-        <Lottie animationData={Logo} loop={true}/>
-          <h1 className="text-3xl font-extrabold mb-2">Institute Management App</h1>
-          <p className="text-yellow-300 font-bold">Manage Your All data in Easy Way...</p>
+          <div className="bg-white border-[3px] border-black shadow-brutal-lg p-4">
+            <Lottie animationData={Logo} loop={true} />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight mt-6">
+            Institute Management App
+          </h1>
+          <p className="inline-block bg-brutal-yellow text-black border-[3px] border-black px-3 py-1 font-extrabold uppercase text-sm tracking-wide mt-4 shadow-brutal-sm">
+            Manage all your data the easy way
+          </p>
         </div>
       </div>
 
       {/* Right Section */}
-      <div className="w-full lg:w-1/2 p-8 flex items-center justify-center">
-        <div className="max-w-md w-full">
-          <h2 className="text-2xl font-extrabold mb-8 text-center">Login With Your Account</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-bold">
-                Email
-              </label>
+      <div className="w-full lg:w-1/2 p-6 md:p-8 flex items-center justify-center">
+        <div className="max-w-md w-full brutal-card p-6 md:p-8 animate-pop">
+          <h2 className="text-2xl font-extrabold uppercase tracking-tight mb-6 text-center">
+            Login To Your Account
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label htmlFor="email" className="brutal-label">Email</label>
               <input
                 required
                 onChange={handleEmailChange}
                 id="email"
                 type="email"
                 placeholder="Enter your email"
-                className="w-full px-3 py-2 border rounded-md"
+                className="brutal-input"
               />
             </div>
-            <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-bold">
-                Password
-              </label>
-              <input
-                required
-                onChange={handlePasswordChange}
-                id="password"
-                type="password"
-                placeholder="Enter password"
-                className="w-full px-3 py-2 border rounded-md"
-              />
+            <div>
+              <label htmlFor="password" className="brutal-label">Password</label>
+              <div className="relative">
+                <input
+                  required
+                  onChange={handlePasswordChange}
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter password"
+                  className="brutal-input pr-14"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((s) => !s)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-brutal-yellow border-[3px] border-black shadow-brutal-xs hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
-            <button
-              type="submit"
-              className={`w-full font-extrabold flex items-center justify-center gap-2 bg-[#FF4E62] hover:bg-[#ff3a51] active:bg-[#e6344a] focus:ring-4 focus:ring-[#ff9aa3] text-white py-2 px-4 rounded-lg shadow-md transition-all duration-300 ${isLoading ? 'cursor-not-allowed opacity-75' : ''}`}
-              disabled={isLoading}
-            >
-              {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse mr-2"></i>}
-              {isLoading ? 'Logging...' : 'Login'}
+            <button type="submit" className="brutal-btn-red w-full" disabled={isLoading}>
+              {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
+              {isLoading ? "Logging In..." : "Login"}
             </button>
           </form>
-          <p className="mt-4 text-center text-sm font-semibold">
-            Don't have an account?{' '}
-            <Link to="/" className="text-[#6C63FF] hover:underline">
+          <p className="mt-5 text-center text-sm font-bold">
+            Don't have an account?{" "}
+            <Link to="/" className="underline decoration-[3px] decoration-brutal-blue underline-offset-2 hover:bg-brutal-yellow">
               Create Your Account
             </Link>
           </p>

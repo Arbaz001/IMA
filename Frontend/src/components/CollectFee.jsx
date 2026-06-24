@@ -67,43 +67,43 @@ const AddFee = () => {
   }
   //---------------------------------------------------------//
   return (
-    <div className="w-full font-bold flex items-center justify-center  bg-gray-50 py-2 px-10">
-      <div className="w-full max-w-[600px] p-[1rem] md:p-8 bg-white rounded-xl shadow-lg shadow-slate-500 transform hover transition-all duration-300">
-        <h2 className="text-xl md:text-2xl font-extrabold mb-4 md:mb-6 text-center">Collect Fee</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-2 md:space-y-4">
+    <div className="w-full flex items-start justify-center py-2">
+      <div className="w-full max-w-[600px] brutal-card p-5 md:p-8 animate-pop">
+        <h2 className="text-2xl font-extrabold uppercase tracking-tight mb-6 text-center bg-brutal-green border-[3px] border-black px-4 py-2 shadow-brutal-sm">Collect Fee</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             required
             onChange={e => { setFullName(e.target.value) }}
             type="text"
             placeholder="Student name"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            className="brutal-input"
           />
           <input
             required
             onChange={e => { setPhone(e.target.value) }}
             type='tel'
             placeholder="Phone number"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            className="brutal-input"
           />
           <input
             required
             onChange={e => { setAmount(e.target.value) }}
-            type='text'
-            placeholder="Student Amount"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            type='number'
+            placeholder="Amount (₹)"
+            className="brutal-input"
           />
           <input
             required
             onChange={e => { setRemark(e.target.value) }}
             type='text'
-            placeholder="Student Remark"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            placeholder="Remark"
+            className="brutal-input"
           />
 
           <select
             required
             onChange={e => { setCourse(e.target.value) }}
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base">
+            className="brutal-input cursor-pointer">
             <option>Select Course</option>
             {courseList.map(course => (
               <option key={course._id} value={course._id}>
@@ -111,11 +111,8 @@ const AddFee = () => {
               </option>
             ))}
           </select>
-          <button
-            type="submit"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 active:bg-red-700 transition-all duration-200 transform hover:scale-[0.98] text-sm md:text-base font-medium"
-          >
-            {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse mr-2"></i>}
+          <button type="submit" className="brutal-btn-red w-full" disabled={!!isLoading}>
+            {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
             Submit
           </button>
         </form>

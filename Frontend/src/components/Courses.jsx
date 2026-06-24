@@ -27,18 +27,29 @@ const Courses = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2">
-      {courses.length > 0 ? (
-        courses.map(course => (
-          <div onClick={()=>{navigate('/dashboard/course-detail/'+course._id)}} key={course.id} className="bg-white rounded-2xl  py-1 px-2 border-2 shadow-xl shadow-black cursor-pointer">
-            <img src={course.imageUrl} alt={course.title} className="w-full h-40  border-2 border-black  rounded-lg mb-2" />
-            <p className="text-base font-bold text-center text-green-600 mb-1">Price: ₹{course.price}</p>
-            <p className="text-neutral-800 text-center text-xl mb-2 font-extrabold">{course.courseName}</p>
+    <div className="space-y-6">
+      <h1 className="brutal-title">All Courses</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {courses.length > 0 ? (
+          courses.map(course => (
+            <div
+              onClick={() => { navigate('/dashboard/course-detail/' + course._id) }}
+              key={course._id}
+              className="brutal-card brutal-hover cursor-pointer p-3"
+            >
+              <img src={course.imageUrl} alt={course.courseName} className="w-full h-40 object-cover border-[3px] border-black mb-3" />
+              <p className="text-neutral-900 text-lg mb-2 font-extrabold uppercase tracking-tight leading-tight">{course.courseName}</p>
+              <span className="brutal-chip bg-brutal-green">₹{course.price}</span>
+            </div>
+          ))
+        ) : (
+          <div className="col-span-full flex items-center justify-center py-32">
+            <p className="brutal-card bg-brutal-yellow px-8 py-6 text-2xl font-extrabold uppercase tracking-widest">
+              No courses available
+            </p>
           </div>
-        ))
-      ) : (
-        <p className="text-center p-[200px] text-3xl font-extrabold w-full col-span-full">No courses available.</p>
-      )}
+        )}
+      </div>
     </div>
   )
 }

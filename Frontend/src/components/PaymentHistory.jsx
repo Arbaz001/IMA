@@ -35,42 +35,40 @@ const PaymentHistory = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-3xl text-center font-extrabold text-gray-800 mt-5 mb-4">
-        All Payments
-      </h2>
-      <table className="w-full text-left border-collapse mt-4">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border-b font-extrabold p-3 text-red-600">Student Name</th>
-            <th className="border-b font-extrabold p-3 text-red-600">Phone</th>
-            <th className="border-b font-extrabold p-3 text-red-600">Remark</th>
-            <th className="border-b font-extrabold p-3 text-red-600">Amount</th>
-            <th className="border-b font-extrabold p-3 text-red-600">Date</th> {/* ✅ New Date Column */}
-          </tr>
-        </thead>
-        <tbody>
-          {paymentList.length > 0 ? (
-            paymentList.map((payment) => (
-              <tr key={payment._id} className="hover:bg-gray-100">
-                <td className="border-b font-bold p-2">{payment.fullName}</td>
-                <td className="border-b font-bold p-2">{payment.phone}</td>
-                <td className="border-b font-bold p-2">{payment.remark}</td>
-                <td className="border-b font-bold p-2">{payment.amount}</td>
-                <td className="border-b font-bold p-2">
-                  {new Date(payment.createdAt).toLocaleDateString()} {/* ✅ Date Formatting */}
+    <div className="space-y-6">
+      <h1 className="brutal-title">All Payments</h1>
+      <div className="brutal-card overflow-x-auto">
+        <table className="brutal-table">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Phone</th>
+              <th>Remark</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {paymentList.length > 0 ? (
+              paymentList.map((payment) => (
+                <tr key={payment._id} className="brutal-row cursor-default">
+                  <td>{payment.fullName}</td>
+                  <td>{payment.phone}</td>
+                  <td>{payment.remark}</td>
+                  <td><span className="brutal-chip bg-brutal-green">₹{payment.amount}</span></td>
+                  <td>{new Date(payment.createdAt).toLocaleDateString()}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center py-8 uppercase tracking-widest opacity-60">
+                  No payment records found
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" className="text-center p-3 text-gray-600">
-                No payment records found.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

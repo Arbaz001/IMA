@@ -93,156 +93,114 @@ const CourseDetail = () => {
   }
 
   return (
-    <div className="flex-1 bg-gray-100 w-full min-h-screen p-0">
+    <div className="space-y-6">
       {course ? (
-        <div className="bg-white p-4">
-          <div className="flex gap-6">
-            <div className="relative">
-              <img
-                src={imageFile ? URL.createObjectURL(imageFile) : course.imageUrl}
-                alt={course.courseName}
-                className="w-96 h-56 object-cover rounded-xl  border-2 border-black shadow-black shadow-lg"
-              />
-              {isEditing && (
-                <input
-                  type="file"
-                  onChange={handleImageChange}
-                  className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+        <>
+          <div className="brutal-card p-5 animate-pop">
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="relative shrink-0">
+                <img
+                  src={imageFile ? URL.createObjectURL(imageFile) : course.imageUrl}
+                  alt={course.courseName}
+                  className="w-full md:w-96 h-56 object-cover border-[3px] border-black shadow-brutal"
                 />
-              )}
-            </div>
-            <div className='ml-7 mb-2'>
-            <h1 className="text-3xl font-bold mb-3 text-blue-700">
+                {isEditing && (
+                  <input
+                    type="file"
+                    onChange={handleImageChange}
+                    className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                  />
+                )}
+              </div>
+
+              <div className="flex-1 min-w-0">
+                <h1 className="text-3xl font-extrabold uppercase tracking-tight mb-3">
+                  {isEditing ? (
+                    <input type="text" name="courseName" value={editedCourse.courseName} onChange={handleInputChange} className="brutal-input" />
+                  ) : (
+                    course.courseName
+                  )}
+                </h1>
+                <div className="space-y-2 font-bold">
+                  <p className="flex items-center gap-2">Price:{" "}
+                    {isEditing ? (
+                      <input type="number" name="price" value={editedCourse.price} onChange={handleInputChange} className="brutal-input max-w-[160px]" />
+                    ) : (
+                      <span className="brutal-chip bg-brutal-green">₹{course.price}</span>
+                    )}
+                  </p>
+                  <p>Starting Date:{" "}
+                    {isEditing ? (
+                      <input type="date" name="startingDate" value={editedCourse.startingDate} onChange={handleInputChange} className="brutal-input max-w-[200px] inline-block" />
+                    ) : (
+                      course.startingDate
+                    )}
+                  </p>
+                  <p>End Date:{" "}
+                    {isEditing ? (
+                      <input type="date" name="endDate" value={editedCourse.endDate} onChange={handleInputChange} className="brutal-input max-w-[200px] inline-block" />
+                    ) : (
+                      course.endDate
+                    )}
+                  </p>
+                  <div className="pt-2 leading-relaxed text-neutral-700">
+                    {isEditing ? (
+                      <textarea name="description" value={editedCourse.description} onChange={handleInputChange} className="brutal-input h-24 resize-none" />
+                    ) : (
+                      course.description
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-row md:flex-col gap-3 shrink-0">
                 {isEditing ? (
-                  <input
-                    type="text"
-                    name="courseName"
-                    value={editedCourse.courseName}
-                    onChange={handleInputChange}
-                    className="border p-2 rounded w-full"
-                  />
+                  <button onClick={handleUpdate} className="brutal-btn-green">Save</button>
                 ) : (
-                  course.courseName
+                  <button onClick={handleEditToggle} className="brutal-btn-yellow">Edit Course</button>
                 )}
-              </h1>
-              <p className="text-gray-700 font-bold mb-2 text-lg">
-                Price: ₹{isEditing ? (
-                  <input
-                    type="number"
-                    name="price"
-                    value={editedCourse.price}
-                    onChange={handleInputChange}
-                    className="border p-1 rounded"
-                  />
-                ) : (
-                  course.price
-                )}
-              </p>
-              <p className="text-gray-700 font-bold mb-2 text-lg">
-                Starting Date: {isEditing ? (
-                  <input
-                    type="date"
-                    name="startingDate"
-                    value={editedCourse.startingDate}
-                    onChange={handleInputChange}
-                    className="border p-1 rounded"
-                  />
-                ) : (
-                  course.startingDate
-                )}
-              </p>
-              <p className="text-gray-700 font-bold mb-2 text-lg">
-                End Date: {isEditing ? (
-                  <input
-                    type="date"
-                    name="endDate"
-                    value={editedCourse.endDate}
-                    onChange={handleInputChange}
-                    className="border p-1 rounded"
-                  />
-                ) : (
-                  course.endDate
-                )}
-              </p>
-              <p className="text-gray-600 font-bold mt-4 leading-relaxed text-lg">
-                {isEditing ? (
-                  <textarea
-                    name="description"
-                    value={editedCourse.description}
-                    onChange={handleInputChange}
-                    className="border p-2 w-full rounded"
-                  />
-                ) : (
-                  course.description
-                )}
-              </p>
-            </div>
-            <div className='ml-40'>
-            <div className="space-x-2">
-              {isEditing ? (
-                <button
-                  onClick={handleUpdate}
-                  className="bg-green-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                >
-                  Save
-                </button>
-              ) : (
-                <button
-                  onClick={handleEditToggle}
-                  className="bg-yellow-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-yellow-600"
-                >
-                  Edit Course
-                </button>
-              )}
-              <button
-                onClick={handleDelete}
-                className="bg-red-500 font-bold text-white px-4 py-2 rounded-lg hover:bg-red-600"
-              >
-                Delete Course
-              </button>
-            </div>
+                <button onClick={handleDelete} className="brutal-btn-red">Delete Course</button>
+              </div>
             </div>
           </div>
 
-          <h2 className="text-2xl font-extrabold  text-gray-800 mt-8 mb-4">Enrolled Students..</h2>
+          <h2 className="brutal-title !text-2xl">Enrolled Students</h2>
 
           {studentList.length === 0 ? (
-            <div className="text-center mt-10">
-              <p className="text-xl font-extrabold text-gray-500">🎓 No Students Enrolled Yet!</p>
-              <p className="text-md font-bold text-gray-400 mt-2">Students will appear here once enrolled.</p>
+            <div className="brutal-card p-10 text-center">
+              <p className="text-xl font-extrabold uppercase tracking-wide">🎓 No Students Enrolled Yet</p>
+              <p className="text-sm font-bold opacity-60 mt-2">Students will appear here once enrolled.</p>
             </div>
           ) : (
-            <table className="w-full text-left border-collapse mt-4">
-              <thead>
-                <tr className="bg-gray-200">
-                  <th className="border-b p-3 text-red-600">Student's Pic</th>
-                  <th className="border-b p-3 text-red-600">Student Name</th>
-                  <th className="border-b p-3 text-red-600">Phone</th>
-                  <th className="border-b p-3 text-red-600">Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                {studentList.map((student) => (
-                  <tr onClick={()=>{navigate('/dashboard/student-detail/'+student._id)}}  key={student._id} className="hover:bg-gray-100 cursor-pointer">
-                    <td className="p-3">
-                      <img
-                        src={student.imageUrl}
-                        alt={student.fullName}
-                        className="w-12 h-12 rounded-full object-cover border"
-                      />
-                    </td>
-                    <td className="p-3 font-extrabold text-gray-800">{student.fullName}</td>
-                    <td className="p-3 font-extrabold text-gray-700">{student.phone}</td>
-                    <td className="p-3 font-extrabold text-gray-700">{student.email}</td>
+            <div className="brutal-card overflow-x-auto">
+              <table className="brutal-table">
+                <thead>
+                  <tr>
+                    <th>Pic</th>
+                    <th>Student Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {studentList.map((student) => (
+                    <tr onClick={() => { navigate('/dashboard/student-detail/' + student._id) }} key={student._id} className="brutal-row">
+                      <td>
+                        <img src={student.imageUrl} alt={student.fullName} className="w-12 h-12 object-cover border-[3px] border-black" />
+                      </td>
+                      <td>{student.fullName}</td>
+                      <td>{student.phone}</td>
+                      <td className="lowercase">{student.email}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
-        </div>
+        </>
       ) : (
-        <div className="flex items-center justify-center h-screen">
-          <p className="text-xl text-gray-600">Loading course details...</p>
+        <div className="flex items-center justify-center h-[60vh]">
+          <p className="brutal-card bg-brutal-yellow px-8 py-6 text-xl font-extrabold uppercase tracking-widest">Loading course details...</p>
         </div>
       )}
     </div>

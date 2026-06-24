@@ -1,3 +1,142 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  /* Responsive root scale — everything sized in rem shrinks/grows proportionally,
+     so the whole UI fits naturally on every screen (like a built-in browser zoom). */
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;          /* large desktops / external monitors */
+  }
+  @media (max-width: 1600px) { html { font-size: 15px; } }
+  @media (max-width: 1440px) { html { font-size: 14.4px; } } /* MacBook Air M2 ~ feels like 90% */
+  @media (max-width: 1280px) { html { font-size: 14px; } }
+  @media (max-width: 768px)  { html { font-size: 15px; } }   /* bump back up so phones stay readable */
+
+  body {
+    margin: 0;
+    font-family: '"Archivo"', system-ui, sans-serif;
+    color: #111111;
+    background-color: #F4F1E9;
+    /* Subtle brutalist grid backdrop — pure CSS, no images, zero runtime cost */
+    background-image:
+      linear-gradient(to right, rgba(17, 17, 17, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17, 17, 17, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Brutalist scrollbar */
+  ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F4F1E9;
+    border-left: 3px solid #111;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #111;
+    border: 3px solid #F4F1E9;
+  }
+
+  ::selection {
+    background: #FFE100;
+    color: #111;
+  }
+}
+
+@layer components {
+  /* ---- Core building blocks ---- */
+  .brutal-card {
+    @apply bg-white border-[3px] border-black shadow-brutal;
+  }
+
+  .brutal-input {
+    @apply w-full bg-white border-[3px] border-black px-4 py-3 font-bold text-black
+           placeholder:text-black/40 outline-none transition-all duration-150
+           focus:shadow-brutal-sm focus:-translate-y-0.5;
+  }
+
+  .brutal-label {
+    @apply block text-xs font-extrabold uppercase tracking-widest mb-1.5;
+  }
+
+  /* Buttons: hard shadow that "presses in" on hover/active */
+  .brutal-btn {
+    @apply inline-flex items-center justify-center gap-2 border-[3px] border-black
+           font-extrabold uppercase tracking-wide px-5 py-3 shadow-brutal
+           transition-all duration-150 select-none
+           hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none
+           active:translate-x-[5px] active:translate-y-[5px] active:shadow-none
+           disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-x-0
+           disabled:translate-y-0 disabled:shadow-brutal;
+  }
+  .brutal-btn-yellow { @apply brutal-btn bg-brutal-yellow text-black; }
+  .brutal-btn-pink   { @apply brutal-btn bg-brutal-pink text-black; }
+  .brutal-btn-blue   { @apply brutal-btn bg-brutal-blue text-white; }
+  .brutal-btn-green  { @apply brutal-btn bg-brutal-green text-black; }
+  .brutal-btn-red    { @apply brutal-btn bg-brutal-red text-white; }
+  .brutal-btn-black  { @apply brutal-btn bg-black text-white; }
+
+  /* Section / page heading */
+  .brutal-title {
+    @apply text-3xl md:text-4xl font-extrabold uppercase tracking-tight inline-block
+           bg-brutal-yellow border-[3px] border-black px-4 py-1.5 shadow-brutal-sm;
+  }
+
+  /* Pill / tag chip */
+  .brutal-chip {
+    @apply inline-flex items-center border-[3px] border-black px-3 py-1
+           text-sm font-extrabold uppercase tracking-wide shadow-brutal-xs;
+  }
+
+  /* Table shell */
+  .brutal-table {
+    @apply w-full border-collapse bg-white;
+  }
+  .brutal-table th {
+    @apply bg-black text-white text-left px-4 py-3 font-extrabold uppercase
+           tracking-wider text-xs border-[3px] border-black;
+  }
+  .brutal-table td {
+    @apply px-4 py-3 font-bold border-[3px] border-black align-middle;
+  }
+  .brutal-row {
+    @apply transition-colors duration-100 hover:bg-brutal-yellow cursor-pointer;
+  }
+}
+
+/* Brutalist toast overrides (react-toastify) */
+.Toastify__toast {
+  border: 3px solid #111 !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0 0 #111 !important;
+  font-weight: 800 !important;
+  font-family: '"Archivo"', system-ui, sans-serif !important;
+}
+.Toastify__toast--success { background: #36E07C !important; color: #111 !important; }
+.Toastify__toast--error   { background: #FF5A4D !important; color: #fff !important; }
+.Toastify__toast--warning { background: #FFE100 !important; color: #111 !important; }
+.Toastify__progress-bar   { background: #111 !important; }
+
+@layer utilities {
+  /* GPU-accelerated lift on hover for cards (keeps interaction snappy) */
+  .brutal-hover {
+    @apply transition-transform duration-150 will-change-transform
+           hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-lg;
+  }
+  .animate-pop {
+    animation: brutal-pop 0.18s ease-out;
+  }
+  @keyframes brutal-pop {
+    from { transform: translateY(6px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+}

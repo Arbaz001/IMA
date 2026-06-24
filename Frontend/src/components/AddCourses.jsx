@@ -50,65 +50,60 @@ const AddCourses = () => {
   }
 
   return (
-    <div className="w-full font-bold flex items-center justify-center  bg-gray-50 py-2 px-10">
-      <div className="w-full max-w-[600px] p-[1rem] md:p-8 bg-white rounded-xl shadow-lg shadow-slate-500 transform hover transition-all duration-300">
-        <h2 className="text-xl md:text-2xl font-extrabold mb-4 md:mb-6 text-center">Add New Course</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-2 md:space-y-4">
+    <div className="w-full flex items-start justify-center py-2">
+      <div className="w-full max-w-[600px] brutal-card p-5 md:p-8 animate-pop">
+        <h2 className="text-2xl font-extrabold uppercase tracking-tight mb-6 text-center bg-brutal-yellow border-[3px] border-black px-4 py-2 shadow-brutal-sm">Add New Course</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             required
             onChange={e => { setCourseName(e.target.value) }}
             type="text"
             placeholder="Course Name"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            className="brutal-input"
           />
           <textarea
             required
             onChange={e => { setDescription(e.target.value) }}
             placeholder="Description"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none resize-none h-20 md:h-24 text-sm md:text-base"
+            className="brutal-input resize-none h-24"
           />
           <input
             required
             onChange={e => { setPrice(e.target.value) }}
-            type="price"
+            type="number"
             placeholder="Price"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            className="brutal-input"
           />
           <input
             required
             onChange={e => { setStartingDate(e.target.value) }}
             type="text"
             placeholder="Starting Date (DD-MM-YY)"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            className="brutal-input"
           />
           <input
             required
             onChange={e => { setEndDate(e.target.value) }}
             type="text"
             placeholder="End Date (DD-MM-YY)"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none text-sm md:text-base"
+            className="brutal-input"
           />
-          <div className="relative">
-            <input
-              required
-              onChange={filehandler}
-              type="file"
-              className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none file:mr-3 md:file:mr-4 file:py-1.5 md:file:py-2 file:px-3 md:file:px-4 file:rounded-full file:border-0 file:text-xs md:file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 text-sm md:text-base"
-            />
-          </div>
+          <input
+            required
+            onChange={filehandler}
+            type="file"
+            className="brutal-input cursor-pointer file:mr-3 file:border-[3px] file:border-black file:bg-brutal-yellow file:font-extrabold file:uppercase file:text-xs file:px-3 file:py-1 file:cursor-pointer"
+          />
           {imageUrl && (
             <img
               src={imageUrl}
-              alt="Course Image"
-              className="w-[200px] h-[150px] object-cover rounded-lg mx-auto md:w-[200px]"
+              alt="Course"
+              className="w-[200px] h-[150px] object-cover border-[3px] border-black shadow-brutal-sm mx-auto"
             />
           )}
 
-          <button
-            type="submit"
-            className="w-full px-3 md:px-4 py-2.5 md:py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 active:bg-red-700 transition-all duration-200 transform hover:scale-[0.98] text-sm md:text-base font-medium"
-          >
-            {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse mr-2"></i>}
+          <button type="submit" className="brutal-btn-red w-full" disabled={!!isLoading}>
+            {isLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
             Submit
           </button>
         </form>
